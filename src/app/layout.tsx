@@ -1,7 +1,8 @@
 import './globals.css'
-import { Inter } from 'next/font/google'
+import { Urbanist } from 'next/font/google'
+import Navigation from './components/Navigation';
 
-const inter = Inter({ subsets: ['latin'] })
+const urbanist = Urbanist({ subsets: ['latin'] })
 
 export const metadata = {
   title: 'Create Next App',
@@ -15,7 +16,15 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en">
-      <body className={inter.className}>{children}</body>
+      <body className={urbanist.className}>
+        {/* <Navigation/> */}
+
+        {children}
+
+        {/* <footer>
+          Footer FabLat 2023
+        </footer> */}
+      </body>
     </html>
   )
 }
