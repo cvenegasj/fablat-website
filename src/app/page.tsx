@@ -8,8 +8,7 @@ export default function Home() {
         <div className='flex-auto'>
           <a
             className="pointer-events-auto inline-block w-140 h-140 pb-0.5"
-            href="http://www.google.com"
-            target="_blank"
+            href="https://fab.lat"
             rel="noopener noreferrer"
           >
             <Image
@@ -26,12 +25,9 @@ export default function Home() {
         </div>
 
         <div className="flex flex-col items-right gap-2">
-          <button className="rounded-full border border-primary-100 px-6 pb-[6px] pt-2 text-xs font-medium uppercase leading-normal text-primary-700 transition duration-150 ease-in-out hover:border-primary-accent-100 hover:bg-neutral-500 hover:bg-opacity-10 focus:border-primary-accent-100 focus:outline-none focus:ring-0 active:border-primary-accent-200 dark:text-primary-100 dark:hover:bg-neutral-100 dark:hover:bg-opacity-10">
-            Únete
-          </button>
-          <button className="rounded-full border border-primary-100 px-6 pb-[6px] pt-2 text-xs font-medium uppercase leading-normal text-primary-700 transition duration-150 ease-in-out hover:border-primary-accent-100 hover:bg-neutral-500 hover:bg-opacity-10 focus:border-primary-accent-100 focus:outline-none focus:ring-0 active:border-primary-accent-200 dark:text-primary-100 dark:hover:bg-neutral-100 dark:hover:bg-opacity-10">
+          <a href="https://app.fab.lat" className="rounded-full border border-primary-100 px-6 pb-[6px] pt-2 text-xs font-medium uppercase leading-normal text-primary-700 transition duration-150 ease-in-out hover:border-primary-accent-100 hover:bg-neutral-500 hover:bg-opacity-10 focus:border-primary-accent-100 focus:outline-none focus:ring-0 active:border-primary-accent-200 dark:text-primary-100 dark:hover:bg-neutral-100 dark:hover:bg-opacity-10">
             Accede
-          </button>
+          </a>
         </div>
       </div>
 
@@ -50,7 +46,7 @@ export default function Home() {
         Stats
       </div> */}
 
-      <div className="mt-60 grid text-center lg:mb-0 lg:grid-cols-4 lg:text-left">
+      {/* <div className="mt-60 grid text-center lg:mb-0 lg:grid-cols-4 lg:text-left">
         <a
           href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
           className="group rounded-lg border border-transparent px-5 py-4 transition-colors hover:border-gray-300 hover:bg-gray-100 hover:dark:border-neutral-700 hover:dark:bg-neutral-800/30"
@@ -118,7 +114,7 @@ export default function Home() {
             Instantly deploy your Next.js site to a shareable URL with Vercel.
           </p>
         </a>
-      </div>
+      </div> */}
     </main>
   )
 }
