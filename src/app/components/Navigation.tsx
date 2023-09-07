@@ -12,20 +12,20 @@ const links = [
     }
   ];
 
-  export default function Navigation() {
-    return (
-        <header className={styles.header}>
-          <nav>
-            <ul>
-              {links.map(({label, route}) => (
-                <li key={route}>
-                  <Link href={route}>
-                    {label}
-                  </Link>
-                </li>
-              ))}
-            </ul>
-          </nav>
-        </header>        
-    );
-  }
+export default function Navigation() {
+  return (
+      <header className={styles.header}>
+        <nav>
+          <ul>
+            {links.map(({label, route}) => (
+              <li key={route}>
+                <Link href={route}>
+                  {label}
+                </Link>
+              </li>
+            ))}
+          </ul>
+        </nav>
+      </header>        
+  );
+}
