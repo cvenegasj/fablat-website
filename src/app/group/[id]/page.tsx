@@ -1,5 +1,4 @@
-export default function Group({ params }: any) {
-    const {id} = params;
+export default function Group({ id }: {id: string}) {
     return (
         <h1>Group {id}</h1>
     );

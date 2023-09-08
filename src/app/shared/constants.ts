@@ -1,0 +1,1 @@
+export const apiBaseUrl: string = 'https://fablat-res.simbiocreacion-backend.site';

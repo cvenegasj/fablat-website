@@ -1,6 +1,6 @@
 import './globals.css'
+import { Providers } from "./providers";
 import { Urbanist } from 'next/font/google'
-import Navigation from './components/Navigation';
 
 const urbanist = Urbanist({ subsets: ['latin'] })
 
@@ -17,13 +17,9 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body className={urbanist.className}>
-        {/* <Navigation/> */}
-
-        {children}
-
-        {/* <footer>
-          Footer FabLat 2023
-        </footer> */}
+        <Providers>
+          {children}
+        </Providers>
       </body>
     </html>
   )
