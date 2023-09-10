@@ -6,7 +6,7 @@ import Link from "next/link";
 export default function GroupCardLanding({groupId, name, description, members, membersCount, imgUrl}: 
     {groupId: string, name: string, description: string, members: any[], membersCount: number, imgUrl: string}) {
     return (
-        <div className="w-[215px] h-[212px] rounded-lg bg-pink-200 bg-opacity-90 p-4 m-1">
+        <div className="w-[215px] h-[212px] rounded-lg bg-pink-200 bg-opacity-90 p-4 m-1 shadow-md hover:transition-all hover:-translate-y-0.5 hover:-translate-x-0.5 hover:shadow-lg">
             <div className="h-[64px] flex items-end justify-center">
                 <Link href={`/group/${groupId}`}>
                     <Avatar isBordered radius="lg" showFallback name={name} src={imgUrl} className="w-16 h-16 text-large" />
@@ -28,8 +28,8 @@ export default function GroupCardLanding({groupId, name, description, members, m
                     {
                         members.map(({id, displayName, avatarUrl}) => {
                             return (
-                                <Tooltip showArrow={true} content={<span className='text-zinc-500'>{displayName}</span>}>
-                                    <Avatar showFallback name={displayName} key={id} src={avatarUrl} />
+                                <Tooltip key={id} showArrow={true} content={<span className='text-zinc-500'>{displayName}</span>}>
+                                    <Avatar showFallback name={displayName} src={avatarUrl} />
                                 </Tooltip>
                             );
                           })
