@@ -1,7 +1,52 @@
-import Image from 'next/image'
-import AvatarLanding from './components/AvatarLanding'
-import GroupCardLanding from './components/GroupCardLanding'
-import { Pagination } from "@nextui-org/pagination";
+import Image from 'next/image';
+import AvatarPersonLanding from './components/AvatarPersonLanding';
+import GroupCardLanding from './components/GroupCardLanding';
+import PaginationLanding from './components/PaginationLanding';
+import { Avatar } from '@nextui-org/avatar';
+import { Tooltip } from '@nextui-org/tooltip';
+
+const people: {id: string, displayName: string, avatarUrl: string}[] = [
+  {id: "fs", displayName: "Carlos Venegas Jara", avatarUrl: "https://i.pravatar.cc/150?u=a04258114e29026302d"},
+  {id: "fg", displayName: "Ana Venegas", avatarUrl: "https://i.pravatar.cc/150?u=a042581f4e29026024d"},
+  {id: "fsasdf", displayName: "Santiaguito Aranda xd", avatarUrl: "https://i.pravatar.cc/150?u=a04258a2462d826712d"},
+  {id: "fsase", displayName: "Carlos Venegas Jara", avatarUrl: "https://i.pravatar.cc/150?u=a042581f4e29026704d"},
+  {id: "fff", displayName: "Carlos Venegas Jara", avatarUrl: "https://i.pravatar.cc/150?u=a04258114e29026302d"},
+  {id: "fsvvv", displayName: "Carlos Venegas Jara", avatarUrl: "https://i.pravatar.cc/150?u=a04258114e29026302d"},
+  {id: "fsqeq", displayName: "Carlos Venegas Jara", avatarUrl: "https://i.pravatar.cc/150?u=a04258114e29026302d"},
+  {id: "frrrrr", displayName: "Carlos Venegas Jara", avatarUrl: "https://i.pravatar.cc/150?u=a04258114e29026702d"},
+  {id: "fsasdf", displayName: "Santiaguito Aranda xd", avatarUrl: "https://i.pravatar.cc/150?u=a04258a2462d826712d"},
+  {id: "fsase", displayName: "Carlos Venegas Jara", avatarUrl: "https://i.pravatar.cc/150?u=a042581f4e29026704d"},
+  {id: "fff", displayName: "Carlos Venegas Jara", avatarUrl: "https://i.pravatar.cc/150?u=a04258114e29026302d"},
+  {id: "fsvvv", displayName: "Carlos Venegas Jara", avatarUrl: "https://i.pravatar.cc/150?u=a04258114e29026302d"},
+  {id: "frrrrr", displayName: "Carlos Venegas Jara", avatarUrl: "https://i.pravatar.cc/150?u=a04258114e29026702d"},
+  {id: "fsasdf", displayName: "Santiaguito Aranda xd", avatarUrl: "https://i.pravatar.cc/150?u=a04258a2462d826712d"},
+  {id: "fsase", displayName: "Carlos Venegas Jara", avatarUrl: "https://i.pravatar.cc/150?u=a042581f4e29026704d"},
+  {id: "fff", displayName: "Carlos Venegas Jara", avatarUrl: "https://i.pravatar.cc/150?u=a04258114e29026302d"},
+  {id: "fsvvv", displayName: "Carlos Venegas Jara", avatarUrl: "https://i.pravatar.cc/150?u=a04258114e29026302d"},
+  {id: "frrrrr", displayName: "Carlos Venegas Jara", avatarUrl: "https://i.pravatar.cc/150?u=a04258114e29026702d"},
+  {id: "fsasdf", displayName: "Santiaguito Aranda xd", avatarUrl: "https://i.pravatar.cc/150?u=a04258a2462d826712d"},
+  {id: "fsase", displayName: "Carlos Venegas Jara", avatarUrl: "https://i.pravatar.cc/150?u=a042581f4e29026704d"},
+  {id: "fff", displayName: "Carlos Venegas Jara", avatarUrl: "https://i.pravatar.cc/150?u=a04258114e29026302d"},
+  {id: "fsvvv", displayName: "Carlos Venegas Jara", avatarUrl: "https://i.pravatar.cc/150?u=a04258114e29026302d"},
+  {id: "frrrrr", displayName: "Carlos Venegas Jara", avatarUrl: "https://i.pravatar.cc/150?u=a04258114e29026702d"},
+  {id: "fsasdf", displayName: "Santiaguito Aranda xd", avatarUrl: "https://i.pravatar.cc/150?u=a04258a2462d826712d"},
+  {id: "fsase", displayName: "Carlos Venegas Jara", avatarUrl: "https://i.pravatar.cc/150?u=a042581f4e29026704d"},
+  {id: "fff", displayName: "Carlos Venegas Jara", avatarUrl: "https://i.pravatar.cc/150?u=a04258114e29026302d"},
+  {id: "fsvvv", displayName: "Carlos Venegas Jara", avatarUrl: "https://i.pravatar.cc/150?u=a04258114e29026302d"},
+];
+
+const members: any[] = [
+  {id: "fs", displayName: "Carlos Venegas Jara", avatarUrl: "https://i.pravatar.cc/150?u=a04258114e29026302d"},
+  {id: "fg", displayName: "Ana Venegas", avatarUrl: "https://i.pravatar.cc/150?u=a042581f4e29026024d"},
+  {id: "fsasdf", displayName: "Santiaguito Aranda xd", avatarUrl: "https://i.pravatar.cc/150?u=a04258a2462d826712d"},
+  {id: "fsase", displayName: "Carlos Venegas Jara", avatarUrl: "https://i.pravatar.cc/150?u=a042581f4e29026704d"},
+  {id: "fff", displayName: "Carlos Venegas Jara", avatarUrl: "https://i.pravatar.cc/150?u=a04258114e29026302d"},
+  {id: "fsvvv", displayName: "Carlos Venegas Jara", avatarUrl: "https://i.pravatar.cc/150?u=a04258114e29026302d"},
+  {id: "fsqeq", displayName: "Carlos Venegas Jara", avatarUrl: "https://i.pravatar.cc/150?u=a04258114e29026302d"},
+  {id: "frrrrr", displayName: "Carlos Venegas Jara", avatarUrl: "https://i.pravatar.cc/150?u=a04258114e29026702d"},
+  {id: "fsasdf", displayName: "Santiaguito Aranda xd", avatarUrl: "https://i.pravatar.cc/150?u=a04258a2462d826712d"},
+];
+
 
 export default function Home() {
   return (
@@ -78,142 +123,105 @@ export default function Home() {
         </div>
       </div>
 
+
+
       {/* Section: Personas */}
       <div className='flex flex-col w-full max-w-8xl my-12'>
-        <h3 className='text-3xl font-light'>
-          <Image
-              className='inline-block mr-4'
-              src="/person_icon.png"
-              alt="Person icon"
-              width={20}
-              height={20}
-              priority
-            />
-            Personas
-        </h3>
-
-        <div className='py-8 w-full flex flex-wrap justify-between'>        
-          <AvatarLanding imgUrl='https://i.pravatar.cc/60' fullName='LMAO' />
-          <AvatarLanding imgUrl='https://i.pravatar.cc/60' fullName='LMAO' />
-          <AvatarLanding imgUrl='https://i.pravatar.cc/60' fullName='LMAO' />
-          <AvatarLanding imgUrl='https://i.pravatar.cc/60' fullName='LMAO' />
-          <AvatarLanding imgUrl='https://i.pravatar.cc/60' fullName='LMAO' />
-          <AvatarLanding imgUrl='https://i.pravatar.cc/60' fullName='LMAO' />
-          <AvatarLanding imgUrl='https://i.pravatar.cc/60' fullName='LMAO' />
-          <AvatarLanding imgUrl='https://i.pravatar.cc/60' fullName='LMAO' />
-          <AvatarLanding imgUrl='https://i.pravatar.cc/60' fullName='LMAO' />
-          <AvatarLanding imgUrl='https://i.pravatar.cc/60' fullName='LMAO' />
-          <AvatarLanding imgUrl='https://i.pravatar.cc/60' fullName='LMAO' />
-          <AvatarLanding imgUrl='https://i.pravatar.cc/60' fullName='LMAO' />
-          <AvatarLanding imgUrl='https://i.pravatar.cc/60' fullName='LMAO' />
-          <AvatarLanding imgUrl='https://i.pravatar.cc/60' fullName='LMAO' />
-          <AvatarLanding imgUrl='https://i.pravatar.cc/60' fullName='LMAO' />
-          <AvatarLanding imgUrl='https://i.pravatar.cc/60' fullName='LMAO' />
-          <AvatarLanding imgUrl='https://i.pravatar.cc/60' fullName='LMAO' />
-          <AvatarLanding imgUrl='https://i.pravatar.cc/60' fullName='LMAO' />
-          <AvatarLanding imgUrl='https://i.pravatar.cc/60' fullName='LMAO' />
-          <AvatarLanding imgUrl='https://i.pravatar.cc/60' fullName='LMAO' />
-          <AvatarLanding imgUrl='https://i.pravatar.cc/60' fullName='LMAO' />
-          <AvatarLanding imgUrl='https://i.pravatar.cc/60' fullName='LMAO' />
-          <AvatarLanding imgUrl='https://i.pravatar.cc/60' fullName='LMAO' />
-          <AvatarLanding imgUrl='https://i.pravatar.cc/60' fullName='LMAO' />
-          <AvatarLanding imgUrl='https://i.pravatar.cc/60' fullName='LMAO' />
-          <AvatarLanding imgUrl='https://i.pravatar.cc/60' fullName='LMAO' />
-          <AvatarLanding imgUrl='https://i.pravatar.cc/60' fullName='LMAO' />
-          <AvatarLanding imgUrl='https://i.pravatar.cc/60' fullName='LMAO' />
-          <AvatarLanding imgUrl='https://i.pravatar.cc/60' fullName='LMAO' />
-          <AvatarLanding imgUrl='https://i.pravatar.cc/60' fullName='LMAO' />
-          <AvatarLanding imgUrl='https://i.pravatar.cc/60' fullName='LMAO' />
-          <AvatarLanding imgUrl='https://i.pravatar.cc/60' fullName='LMAO' />
-          <AvatarLanding imgUrl='https://i.pravatar.cc/60' fullName='LMAO' />
-          <AvatarLanding imgUrl='https://i.pravatar.cc/60' fullName='LMAO' />
-          <AvatarLanding imgUrl='https://i.pravatar.cc/60' fullName='LMAO' />
-          <AvatarLanding imgUrl='https://i.pravatar.cc/60' fullName='LMAO' />
-        </div>
-
-        <div className="flex justify-center">
-          <Pagination variant="light" showControls total={10} initialPage={1} classNames={{
-            base: "text-white",
-            prev: "text-white",
-            next: "text-white",
-            wrapper: "",
-            item: "text-white hover:text-gray",
-            cursor: "active:bg-violet-600",
-            }} />
-        </div>
-      </div>
-
-
-      {/* Section: Grupos */}
-      <div className='flex flex-col w-full max-w-8xl my-12'>
-        <h3 className='text-3xl font-light'>
-          <Image
-              className='inline-block mr-4'
+        <h3 className='text-3xl font-light flex items-center'>
+          <a className='w-[80px] h-[80px] gradient-section-landing flex justify-center items-center mr-4'>
+            <Image
+              className='inline-block'
               src="/groups_icon.png"
               alt="Groups icon"
               width={25}
               height={25}
               priority
             />
-            Grupos
+          </a>
+          
+          Personas
         </h3>
 
-        <div className='py-8 w-full flex flex-wrap justify-between'>
-          <GroupCardLanding groupId='1' name='Very long long long looooooooong name' description='Group description goes here' membersCount={4} imgUrl='' />
-          <GroupCardLanding groupId='2' name='SUPER GROUPPPPPPPPPPPPPPPPPPPPPPPPPPP' description='another cool description' membersCount={4} imgUrl='' />
-          <GroupCardLanding groupId='3' name='TEST' description=':P' membersCount={4} imgUrl='' />
-          <GroupCardLanding groupId='4' name='BEST ONE' description='' membersCount={4} imgUrl='' />
-          <GroupCardLanding groupId='2' name='SUPER GROUPPPPPPPPPPPPPPPPPPPPPPPPPPP' description='another cool description' membersCount={4} imgUrl='' />
-          <GroupCardLanding groupId='2' name='SUPER GROUPPPPPPPPPPPPPPPPPPPPPPPPPPP' description='another cool description' membersCount={4} imgUrl='' />
-          <GroupCardLanding groupId='2' name='SUPER GROUPPPPPPPPPPPPPPPPPPPPPPPPPPP' description='another cool description' membersCount={4} imgUrl='' />
-          <GroupCardLanding groupId='2' name='SUPER GROUPPPPPPPPPPPPPPPPPPPPPPPPPPP' description='another cool description' membersCount={4} imgUrl='' />
-          <GroupCardLanding groupId='2' name='SUPER GROUPPPPPPPPPPPPPPPPPPPPPPPPPPP' description='another cool description' membersCount={4} imgUrl='' />
-          <GroupCardLanding groupId='2' name='SUPER GROUPPPPPPPPPPPPPPPPPPPPPPPPPPP' description='another cool description' membersCount={4} imgUrl='' />
-          <GroupCardLanding groupId='2' name='SUPER GROUPPPPPPPPPPPPPPPPPPPPPPPPPPP' description='another cool description' membersCount={4} imgUrl='' />
-          <GroupCardLanding groupId='2' name='SUPER GROUPPPPPPPPPPPPPPPPPPPPPPPPPPP' description='another cool description' membersCount={4} imgUrl='' />
+        <div className='py-8 w-full flex flex-wrap justify-between gap-5'>
+          {
+            people.map(({id, displayName, avatarUrl}) => {
+              return (
+                <Tooltip showArrow={true} content={<span className='text-zinc-500'>{displayName}</span>}>
+                  <Avatar showFallback name={displayName} key={id} src={avatarUrl} size="lg" />
+                </Tooltip>
+              );
+            })
+          }
         </div>
 
         <div className="flex justify-center">
-          <Pagination variant="light" showControls total={10} initialPage={1} classNames={{
-            base: "text-white",
-            prev: "text-white",
-            next: "text-white",
-            wrapper: "",
-            item: "text-white hover:text-gray",
-            cursor: "active:bg-violet-600",
-            }} />
+          <PaginationLanding total={10} initialPage={1} />
+        </div>
+      </div>
+
+
+
+
+      {/* Section: Grupos */}
+      <div className='flex flex-col w-full max-w-8xl my-12'>
+        <h3 className='text-3xl font-light flex items-center'>
+          <a className='w-[80px] h-[80px] gradient-section-landing flex justify-center items-center mr-4'>
+            <Image
+              className='inline-block'
+              src="/groups_icon.png"
+              alt="Groups icon"
+              width={25}
+              height={25}
+              priority
+            />
+          </a>
+          
+          Grupos
+        </h3>
+
+        <div className='py-8 w-full flex flex-wrap justify-between'>
+          <GroupCardLanding key={1} groupId='1' name='Very long long long looooooooong name' description='Group description goes here' members={members} membersCount={members.length} imgUrl='https://i.pravatar.cc/200' />
+          <GroupCardLanding key={2} groupId='2' name='SUPER GROUPPPPPPPPPPPPPPPPPPPPPPPPPPP' description='another cool description' members={members} membersCount={members.length} imgUrl='https://i.pravatar.cc/200' />
+          <GroupCardLanding key={3} groupId='3' name='TEST' description=':P' members={members} membersCount={members.length} imgUrl='' />
+          <GroupCardLanding key={4} groupId='4' name='BEST ONE' description='' members={members} membersCount={members.length} imgUrl='' />
+          <GroupCardLanding key={5} groupId='2' name='SUPER GROUPPPPPPPPPPPPPPPPPPPPPPPPPPP' description='another cool description' members={members} membersCount={members.length} imgUrl='https://i.pravatar.cc/200' />
+          <GroupCardLanding key={6} groupId='2' name='SUPER GROUPPPPPPPPPPPPPPPPPPPPPPPPPPP' description='another cool description' members={members} membersCount={members.length} imgUrl='https://i.pravatar.cc/200' />
+          <GroupCardLanding key={7} groupId='2' name='SUPER GROUPPPPPPPPPPPP' description='another cool description' members={members} membersCount={members.length} imgUrl='https://i.pravatar.cc/200' />
+          <GroupCardLanding key={8} groupId='2' name='SUPER GROUPPPPPPPPPPPPPPPPPPPPPPPPPPP' description='another cool description' members={members} membersCount={members.length} imgUrl='https://i.pravatar.cc/200' />
+          <GroupCardLanding key={9} groupId='2' name='SUPER GROUPPPPPPPPPPPPPPPPPPPP' description='another cool description' members={members} membersCount={members.length} imgUrl='https://i.pravatar.cc/200' />
+          <GroupCardLanding key={10} groupId='2' name='SUPER GROUPPPPPPPPPPPPPPPPP' description='another cool description' members={members} membersCount={members.length} imgUrl='https://i.pravatar.cc/200' />
+          <GroupCardLanding key={11} groupId='2' name='SUPER GROUPPPPPPPPPPPPPPPPPPPPPPPPPPP' description='another cool description' members={members} membersCount={members.length} imgUrl='https://i.pravatar.cc/200' />
+          <GroupCardLanding key={12} groupId='2' name='SUPER GROUPPPPPPPPPPPPPPPPPPPPPPPPPPP' description='another cool description' members={members} membersCount={members.length} imgUrl='https://i.pravatar.cc/200' />
+        </div>
+
+        <div className="flex justify-center">
+          <PaginationLanding total={10} initialPage={1} />
         </div>
 
       </div>
 
 
+
+
       {/* Section: Labs */}
       <div className='flex flex-col w-full max-w-8xl my-12'>
-        <h3 className='text-3xl font-light'>
-          <Image
-              className='inline-block mr-4'
-              src="/labs_icon.png"
-              alt="Labs icon"
-              width={35}
-              height={35}
+        <h3 className='text-3xl font-light flex items-center'>
+          <a className='w-[80px] h-[80px] gradient-section-landing flex justify-center items-center mr-4'>
+            <Image
+              className='inline-block'
+              src="/groups_icon.png"
+              alt="Groups icon"
+              width={25}
+              height={25}
               priority
             />
-            Labs
+          </a>
+          
+          Labs
         </h3>
 
         <div className='py-8 w-full flex flex-wrap justify-between'>
-          <GroupCardLanding groupId='1' name='Very long long long looooooooong name' description='Group description goes here' membersCount={4} imgUrl='' />
-          <GroupCardLanding groupId='2' name='SUPER GROUPPPPPPPPPPPPPPPPPPPPPPPPPPP' description='another cool description' membersCount={4} imgUrl='' />
-          <GroupCardLanding groupId='3' name='TEST' description=':P' membersCount={4} imgUrl='' />
-          <GroupCardLanding groupId='4' name='BEST ONE' description='' membersCount={4} imgUrl='' />
-          <GroupCardLanding groupId='2' name='SUPER GROUPPPPPPPPPPPPPPPPPPPPPPPPPPP' description='another cool description' membersCount={4} imgUrl='' />
-          <GroupCardLanding groupId='2' name='SUPER GROUPPPPPPPPPPPPPPPPPPPPPPPPPPP' description='another cool description' membersCount={4} imgUrl='' />
-          <GroupCardLanding groupId='2' name='SUPER GROUPPPPPPPPPPPPPPPPPPPPPPPPPPP' description='another cool description' membersCount={4} imgUrl='' />
-          <GroupCardLanding groupId='2' name='SUPER GROUPPPPPPPPPPPPPPPPPPPPPPPPPPP' description='another cool description' membersCount={4} imgUrl='' />
-          <GroupCardLanding groupId='2' name='SUPER GROUPPPPPPPPPPPPPPPPPPPPPPPPPPP' description='another cool description' membersCount={4} imgUrl='' />
-          <GroupCardLanding groupId='2' name='SUPER GROUPPPPPPPPPPPPPPPPPPPPPPPPPPP' description='another cool description' membersCount={4} imgUrl='' />
-          <GroupCardLanding groupId='2' name='SUPER GROUPPPPPPPPPPPPPPPPPPPPPPPPPPP' description='another cool description' membersCount={4} imgUrl='' />
-          <GroupCardLanding groupId='2' name='SUPER GROUPPPPPPPPPPPPPPPPPPPPPPPPPPP' description='another cool description' membersCount={4} imgUrl='' />
+          
         </div>
 
       </div>

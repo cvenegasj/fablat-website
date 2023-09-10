@@ -21,3 +21,9 @@ body {
   background: rgb(128,0,128);
   background: linear-gradient(125deg, rgba(128,0,128,1) 44%, rgba(255,0,102,1) 74%);
 }
+
+@layer components {
+  .gradient-section-landing {
+    background: radial-gradient(circle, rgba(255,240,100,0.6419161414565826) 11%, rgba(255,240,100,0.20214023109243695) 44%, rgba(255,255,255,0) 68%);
+  }
+}

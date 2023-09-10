@@ -23,13 +23,14 @@ module.exports = {
   plugins: [nextui({
     themes: {
       light: {
-        colors: {
-          primary: {
-            DEFAULT: colors.zinc[200],
-            foreground: "#000",
-          },
-          focus: colors.white,
+        default: {
+          background: colors.zinc[300],
+          foreground: colors.zinc[600], // text color
         },
+        // colors: {
+        //   background: colors.zinc[300],
+        //   foreground: colors.zinc[600], // text color
+        // },
       },
     },
   })],
