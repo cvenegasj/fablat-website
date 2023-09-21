@@ -1,4 +1,6 @@
-export default function Group({ id }: {id: string}) {
+
+
+export default function GroupView({ id }: {id: string}) {
     return (
         <h1>Group {id}</h1>
     );

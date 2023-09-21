@@ -27,10 +27,22 @@ module.exports = {
           background: colors.zinc[300],
           foreground: colors.zinc[600], // text color
         },
-        // colors: {
-        //   background: colors.zinc[300],
-        //   foreground: colors.zinc[600], // text color
-        // },
+        colors: {
+          background: "#FFFFFF", // or DEFAULT
+          foreground: "#11181C", // or 50 to 900 DEFAULT
+          primary: {
+            foreground: "#FFFFFF",
+            DEFAULT: colors.purple[500],
+          },
+          secondary: {
+            foreground: colors.gray[200],
+            DEFAULT: colors.pink[400],
+          },
+          success: {
+            foreground: "#FFFFFF",
+            DEFAULT: colors.emerald[400],
+          },
+        },
       },
     },
   })],
