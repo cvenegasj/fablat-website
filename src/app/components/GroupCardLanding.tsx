@@ -10,9 +10,7 @@ export default function GroupCardLanding({groupId, name, description, score, mem
         <div className="w-[225px] h-[212px] rounded-lg bg-pink-200/90 p-4 m-1 shadow-md hover:transition-all hover:-translate-y-0.5 hover:-translate-x-0.5 hover:shadow-lg">
             <div className="h-[64px] flex items-end justify-center">
                 <Link href={`/group/${groupId}`}>
-                    <Avatar isBordered radius="lg" showFallback name={name} src={imgUrl} className="w-16 h-16 text-large" fallback={
-                        <Image src="/fablat_2023_logo.png" />
-                    } />
+                    <Avatar isBordered radius="lg" showFallback name={name} src={imgUrl} className="w-16 h-16 text-large" fallback={<Image src="/fablat_2023_logo.png" />} />
                 </Link>
             </div>
 

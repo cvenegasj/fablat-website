@@ -17,13 +17,19 @@
 } */
 
 body {
-  color: white;
-  background: rgb(128,0,128);
-  background: linear-gradient(125deg, rgba(128,0,128,1) 44%, rgba(255,0,102,1) 74%);
+  background: rgb(255,255,255);
+  background: radial-gradient(circle, rgba(255,255,255,1) 73%, rgba(226,225,218,1) 98%, rgba(226,225,218,1) 100%);
 }
 
 @layer components {
   .gradient-section-landing {
     background: radial-gradient(circle, rgba(255,240,100,0.6419161414565826) 11%, rgba(255,240,100,0.20214023109243695) 44%, rgba(255,255,255,0) 68%);
   }
+
+  .bg-gradient-general-landing {
+    color: white;
+    background: rgb(128,0,128);
+    background: linear-gradient(125deg, rgba(128,0,128,1) 44%, rgba(255,0,102,1) 74%);
+  }
+
 }
