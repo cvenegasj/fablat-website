@@ -16,7 +16,7 @@ export default function PersonCardLanding({id, avatarUrl, displayName, score, gr
 
                 <div className='w-full flex ml-2 items-center'>
                     <div className='w-full line-clamp-2 leading-5 text-neutral-200 hover:text-neutral-300'>
-                        <Link className="font-normal text-md" href={`/person/${id}`}>
+                        <Link className="font-normal text-md" href={`/participant/${id}`}>
                             {displayName}
                         </Link>
                     </div>
