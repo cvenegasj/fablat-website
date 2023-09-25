@@ -9,3 +9,13 @@ export interface UserDto {
     eventsCount: number,
     country: string,
 }
+
+export interface GroupDto {
+    id: string,
+    name: string,
+    imgUrl: string,
+    score: number,
+    membersCount: number,
+    workshopsCount: number, 
+    eventsCount: number,
+}

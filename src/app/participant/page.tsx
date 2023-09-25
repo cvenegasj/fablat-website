@@ -8,7 +8,7 @@ import { Tooltip } from "@nextui-org/tooltip";
 import { Image } from "@nextui-org/image";
 import { Link } from "@nextui-org/link";
 import { Pagination } from "@nextui-org/pagination";
-import { Table, TableHeader, TableBody, TableRow, TableColumn, TableCell, getKeyValue } from "@nextui-org/table";
+import { Table, TableHeader, TableBody, TableRow, TableColumn, TableCell } from "@nextui-org/table";
 import { IconArrowsSort, IconSearch, IconSortAscendingLetters, IconSortDescending2, IconSortDescendingNumbers } from "@tabler/icons-react";
 import { Select, SelectItem } from "@nextui-org/react";
 import { countries } from "../shared/constants";
@@ -19,7 +19,7 @@ import useSWR from "swr";
 
 const fetcher = (...args) => fetch(...args).then((res) => res.json());
 
-const headers: {key: string, label: string}[] = [
+const tableHeaders: {key: string, label: string}[] = [
     {key: "displayName", label: "NOMBRE"},
     {key: "score", label: "PUNTAJE DE IMPACTO"},
     {key: "country", label: "PAÍS"},
@@ -29,6 +29,8 @@ const headers: {key: string, label: string}[] = [
     // {key: "", label: ""},
     // {key: "", label: ""},
 ];
+
+const countriesList: any[] = Array.from(countries.values());
 
 const users: UserDto[] = [
     {id: "fs", email: "email@gmail.com", country: "pe",  displayName: "Grace Schwan", avatarUrl: "https://i.pravatar.cc/150?u=a04258114e29026302d", score: 50, groupsJoined: [{id: "4asdf", name: "first", avatarUrl: "https://i.pravatar.cc/200"}, {id: "44rf", name: "second", avatarUrl: "https://i.pravatar.cc/200"}, {id: "52345f", name: "third", avatarUrl: null}], workshopsCount: 5, eventsCount: 4},
@@ -52,9 +54,8 @@ const users: UserDto[] = [
     {id: "ffbbf", email: "email@gmail.com", country: "br",  displayName: "Carlos Venegas Jara", avatarUrl: "https://i.pravatar.cc/150?u=a04258114e29026302d", score: 4, groupsJoined: [], workshopsCount: 3, eventsCount: 4},
 ];
 
-export default function ParticipantsGeneral() {
-    const countriesList: any[] = Array.from(countries.values());
 
+export default function ParticipantsGeneral() {
     const renderCell = React.useCallback((user: UserDto, columnKey) => {
         const cellValue = user[columnKey];
     
@@ -119,7 +120,7 @@ export default function ParticipantsGeneral() {
     const loadingState = isLoading || data?.results.length === 0 ? "loading" : "idle";
 
     return (
-        <main className="flex flex-col min-h-screen items-center xl:px-80 lg:px-36 px-20 py-9">
+        <main className="flex flex-col min-h-screen xl:px-80 lg:px-36 px-20 py-9">
             <div className="flex w-full">
                 <div className="flex-grow">
                     <Input
@@ -232,7 +233,7 @@ export default function ParticipantsGeneral() {
                         classNames={{
                             wrapper: "w-full"
                         }}>
-                        <TableHeader columns={headers}>
+                        <TableHeader columns={tableHeaders}>
                             {(header) => <TableColumn key={header.key}>{header.label}</TableColumn>}
                         </TableHeader>
 

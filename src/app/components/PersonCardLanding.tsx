@@ -6,7 +6,7 @@ import Link from 'next/link';
 
 export default function PersonCardLanding({id, avatarUrl, displayName, score, groupsJoined}: {id: string, avatarUrl: string, displayName: string, score: number, groupsJoined: any[]}) {
     return (
-        <div className='flex flex-col w-[180px] h-[135px] rounded-lg bg-pink-200/50 p-2 shadow-md transition hover:duration-10 hover:-translate-y-[1px] hover:-translate-x-[1px] hover:shadow-lg'>        
+        <div className='flex flex-col w-[180px] h-[131px] rounded-lg bg-pink-200/50 p-2 shadow-md transition hover:duration-10 hover:-translate-y-[1px] hover:-translate-x-[1px] hover:shadow-lg'>        
             <div className='w-full flex'>
                 <div className='w-[65px] h-[65px] flex-shrink-0 text-right'>
                     <Badge content={score} size="lg" color="success" placement="bottom-left" shape="rectangle" variant="shadow">
@@ -23,7 +23,7 @@ export default function PersonCardLanding({id, avatarUrl, displayName, score, gr
                 </div>
             </div>
 
-            <Divider className='mt-3' />
+            <Divider className='mt-2' />
 
             <AvatarGroup max={4} total={groupsJoined.length - 4} className='w-full mt-2'>
                 {

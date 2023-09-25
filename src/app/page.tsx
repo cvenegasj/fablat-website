@@ -3,8 +3,7 @@ import PersonCardLanding from './components/PersonCardLanding';
 import GroupCardLanding from './components/GroupCardLanding';
 import PaginationLanding from './components/PaginationLanding';
 import { Link } from '@nextui-org/link';
-import { IconArrowRight, IconCell, IconHexagon, IconHexagonalPrism, IconLink, IconUser, IconUsersGroup } from '@tabler/icons-react';
-import { Button } from '@nextui-org/button';
+import { IconArrowRight, IconCell, IconHexagon, IconHexagonalPrism } from '@tabler/icons-react';
 
 const people: {id: string, displayName: string, avatarUrl: string, score: number, groupsJoined: any[]}[] = [
   {id: "fs", displayName: "Grace Schwan", avatarUrl: "https://i.pravatar.cc/150?u=a04258114e29026302d", score: 50, groupsJoined: [{id: "4asdf", name: "first", avatarUrl: "https://i.pravatar.cc/200"}, {id: "44rf", name: "second", avatarUrl: "https://i.pravatar.cc/200"}, {id: "52345f", name: "third", avatarUrl: null}]},
@@ -42,7 +41,7 @@ const members: any[] = [
 
 export default function Home() {
   return (
-    <main id="home" className="flex flex-col min-h-screen items-center xl:px-80 lg:px-36 px-20 py-9">
+    <main id="home" className="flex flex-col min-h-screen xl:px-80 lg:px-36 px-20 py-9">
       
       <div id="landing-top" className="flex w-full max-w-8xl">
         <div className="flex-grow">
@@ -237,7 +236,7 @@ export default function Home() {
         </h3>
 
         <div className='w-full flex py-8'>
-          <Link className='w-full block p-6 rounded-3xl bg-pink-200/50 text-center text-xl font-medium text-neutral-100' href="https://www.fablabs.io/labs" target='_blank'>
+          <Link className='w-full block p-6 rounded-3xl bg-pink-200/30 text-center text-xl font-medium text-neutral-100' href="https://www.fablabs.io/labs" target='_blank'>
             Ver todos los fab labs en https://www.fablabs.io/labs
           </Link>
         </div>
