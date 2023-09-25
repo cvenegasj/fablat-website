@@ -56,8 +56,8 @@ const users: UserDto[] = [
 
 
 export default function ParticipantsGeneral() {
-    const renderCell = React.useCallback((user: UserDto, columnKey) => {
-        const cellValue = user[columnKey];
+    const renderCell = React.useCallback((user: UserDto, columnKey: any) => {
+        const cellValue = user[columnKey as keyof UserDto];
     
         switch (columnKey) {
             case "displayName":

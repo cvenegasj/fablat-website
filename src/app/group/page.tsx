@@ -36,8 +36,8 @@ const groups: GroupDto[] = [
 
 
 export default function GroupsGeneral() {
-    const renderCell = React.useCallback((group: GroupDto, columnKey) => {
-        const cellValue = group[columnKey];
+    const renderCell = React.useCallback((group: GroupDto, columnKey: any) => {
+        const cellValue = group[columnKey as keyof GroupDto];
     
         switch (columnKey) {
             case "name":
