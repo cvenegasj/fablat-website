@@ -3,6 +3,8 @@ import PersonCardLanding from './components/PersonCardLanding';
 import GroupCardLanding from './components/GroupCardLanding';
 import PaginationLanding from './components/PaginationLanding';
 import { Link } from '@nextui-org/link';
+import { IconArrowRight, IconCell, IconHexagon, IconHexagonalPrism, IconLink, IconUser, IconUsersGroup } from '@tabler/icons-react';
+import { Button } from '@nextui-org/button';
 
 const people: {id: string, displayName: string, avatarUrl: string, score: number, groupsJoined: any[]}[] = [
   {id: "fs", displayName: "Grace Schwan", avatarUrl: "https://i.pravatar.cc/150?u=a04258114e29026302d", score: 50, groupsJoined: [{id: "4asdf", name: "first", avatarUrl: "https://i.pravatar.cc/200"}, {id: "44rf", name: "second", avatarUrl: "https://i.pravatar.cc/200"}, {id: "52345f", name: "third", avatarUrl: null}]},
@@ -17,6 +19,9 @@ const people: {id: string, displayName: string, avatarUrl: string, score: number
   {id: "ffgf", displayName: "Ricardo Gonzales", avatarUrl: "https://i.pravatar.cc/150?u=a04258114e29026302d", score: 13, groupsJoined: []},
   {id: "fs", displayName: "Christian Castillo", avatarUrl: "https://i.pravatar.cc/150?u=a04258114e29026302d", score: 10, groupsJoined: [{id: "4asdf", name: "first", avatarUrl: null}, {id: "44rf", name: "second", avatarUrl: null}, {id: "52345f", name: "third", avatarUrl: "https://i.pravatar.cc/200"}]},
   {id: "fg354g", displayName: "Alexander Castro", avatarUrl: "https://i.pravatar.cc/150?u=a042581f4e29026024d", score: 9, groupsJoined: [{id: "543ff", name: "first", avatarUrl: "https://i.pravatar.cc/200"}, {id: "432", name: "second", avatarUrl: "https://i.pravatar.cc/200"}]},
+  {id: "fsasdf2", displayName: "Santiago Aranda", avatarUrl: "https://i.pravatar.cc/150?u=a04258a2462d826712d", score: 8, groupsJoined: [{id: "fsdf44", name: "third", avatarUrl: "https://i.pravatar.cc/200"}]},
+  {id: "fsase77", displayName: "Carlos Gonzales", avatarUrl: "https://i.pravatar.cc/150?u=a042581f4e29026704d", score: 8, groupsJoined: [{id: "5544g", name: "first", avatarUrl: "https://i.pravatar.cc/200"}, {id: "7675g", name: "second", avatarUrl: "https://i.pravatar.cc/200"}, {id: "98898f", name: "third", avatarUrl: "https://i.pravatar.cc/200"}]},
+  {id: "ffbbf", displayName: "Carlos Venegas Jara", avatarUrl: "https://i.pravatar.cc/150?u=a04258114e29026302d", score: 4, groupsJoined: []},
   {id: "fsasdf2", displayName: "Santiago Aranda", avatarUrl: "https://i.pravatar.cc/150?u=a04258a2462d826712d", score: 8, groupsJoined: [{id: "fsdf44", name: "third", avatarUrl: "https://i.pravatar.cc/200"}]},
   {id: "fsase77", displayName: "Carlos Gonzales", avatarUrl: "https://i.pravatar.cc/150?u=a042581f4e29026704d", score: 8, groupsJoined: [{id: "5544g", name: "first", avatarUrl: "https://i.pravatar.cc/200"}, {id: "7675g", name: "second", avatarUrl: "https://i.pravatar.cc/200"}, {id: "98898f", name: "third", avatarUrl: "https://i.pravatar.cc/200"}]},
   {id: "ffbbf", displayName: "Carlos Venegas Jara", avatarUrl: "https://i.pravatar.cc/150?u=a04258114e29026302d", score: 4, groupsJoined: []},
@@ -37,7 +42,7 @@ const members: any[] = [
 
 export default function Home() {
   return (
-    <main className="bg-gradient-general-landing flex flex-col min-h-screen items-center xl:px-80 lg:px-36 px-20 py-9">
+    <main id="home" className="flex flex-col min-h-screen items-center xl:px-80 lg:px-36 px-20 py-9">
       
       <div id="landing-top" className="flex w-full max-w-8xl">
         <div className="flex-grow">
@@ -58,55 +63,65 @@ export default function Home() {
           <h1 className="text-5xl"><span className='font-thin'>fab</span><span className='font-semibold'>lat</span></h1>
           <h2 className="text-2xl">Red Latinoamericana de Fab Labs</h2>
         </div>
-
-        <div className="flex-shrink-0">
-          <a href="https://app.fab.lat" className="rounded-full border border-primary-100 px-6 pb-[6px] pt-2 text-sm font-medium uppercase leading-normal text-white transition duration-150 ease-in-out hover:border-primary-accent-100 hover:bg-neutral-500 hover:bg-opacity-10 focus:border-primary-accent-100 focus:outline-none focus:ring-0 active:border-primary-accent-200">
-            Accede
-          </a>
-        </div>
       </div>
 
-      <div className='flex w-full max-w-8xl mt-14 mb-12 py-7'>
-        <div className='grow text-center'>
-          <span className='block text-4xl font-normal'>523</span>
-          <div className='mt-5 mb-2 h-[45px] flex items-end justify-center'>
-            <Image
-                src="/person_icon.png"
-                alt="Person icon"
-                width={20}
-                height={20}
-                priority
-              />
+      <div className='flex w-full max-w-8xl mt-14 mb-12 py-7 gap-8'>
+
+        <div className='p-4 grow text-center rounded-2xl backdrop-blur-sm bg-white/20'>
+          <div className='flex justify-center items-center'>
+              {/* <Image
+                  src="/person_icon.png"
+                  alt="Person icon"
+                  width={15}
+                  height={15}
+                  priority
+              /> */}
+            <IconHexagon className='text-emerald-400' size={25} stroke={2} />
+    
+            <p className='text-2xl text-white font-light ml-3'>523</p>
           </div>
-          <span className='block'>Personas</span>
+
+          <div className='flex justify-center items-center'>
+            <span className='font-normal'>miembros</span>
+          </div>          
         </div>
 
-        <div className='grow text-center'>
-          <span className='block text-4xl font-normal'>84</span>
-          <div className='mt-5 mb-2 h-[45px] flex items-end justify-center'>
-            <Image
-                src="/groups_icon.png"
-                alt="Groups icon"
-                width={30}
-                height={30}
-                priority
-              />
-          </div>
-          <span className='block'>Grupos</span>
+        <div className='p-4 grow text-center rounded-2xl backdrop-blur-sm bg-white/20'>
+          <div className='flex justify-center items-center'>
+                {/* <Image
+                    src="/person_icon.png"
+                    alt="Person icon"
+                    width={15}
+                    height={15}
+                    priority
+                /> */}
+              <IconCell className='text-emerald-400' size={25} stroke={2} />
+      
+              <p className='text-2xl text-white font-light ml-3'>19</p>
+            </div>
+
+            <div className='flex justify-center items-center'>
+              <span className='font-normal'>grupos</span>
+            </div>    
         </div>
 
-        <div className='grow text-center'>
-          <span className='block text-4xl font-normal'>104</span>
-          <div className='mt-5 mb-2 h-[45px] flex items-end justify-center'>
-            <Image
-                src="/labs_icon.png"
-                alt="Labs icon"
-                width={45}
-                height={45}
-                priority
-              />
+        <div className='p-4 grow text-center rounded-2xl backdrop-blur-sm bg-white/20'>
+          <div className='flex justify-center items-center'>
+                {/* <Image
+                    src="/person_icon.png"
+                    alt="Person icon"
+                    width={15}
+                    height={15}
+                    priority
+                /> */}
+              <IconHexagonalPrism className='text-emerald-400' size={25} stroke={2} />
+      
+            <p className='text-2xl text-white font-light ml-3'>10</p>
           </div>
-          <span className='block'>Labs</span>
+
+          <div className='flex justify-center items-center'>
+            <span className='font-normal'>labs</span>
+          </div>
         </div>
       </div>
 
@@ -114,9 +129,9 @@ export default function Home() {
 
       {/* Section: Personas */}
       <div className='flex flex-col w-full max-w-8xl my-12'>
-        <h3 className='flex items-center relative left-[-27.5px]'>
-          <Link href='/participant'>
-            <span className='w-[80px] h-[80px] gradient-section-landing flex justify-center items-center mr-4'>
+        <h3 className='flex items-center justify-between'>
+          <Link className='relative left-[-27.5px]' href='/participant'>
+            <span className='w-[80px] h-[80px] gradient-section-landing flex justify-center items-center mr-3'>
               <Image
                 className='inline-block'
                 src="/groups_icon.png"
@@ -127,7 +142,12 @@ export default function Home() {
               />
             </span>
             
-            <span className='text-3xl font-light text-neutral-100'>Personas</span>
+            <span className='text-2xl font-light text-neutral-100 uppercase'>Miembros</span>
+          </Link>
+
+          <Link href="/participant" className='text-sm text-neutral-200'>
+            ver todos
+            <IconArrowRight size={20} />
           </Link>
         </h3>
 
@@ -135,7 +155,7 @@ export default function Home() {
           {
             people.map(({id, displayName, avatarUrl, score, groupsJoined}) => {
               return (
-                <PersonCardLanding id={id} avatarUrl={avatarUrl} displayName={displayName} score={score} groupsJoined={groupsJoined} />
+                <PersonCardLanding key={id} id={id} avatarUrl={avatarUrl} displayName={displayName} score={score} groupsJoined={groupsJoined} />
               );
             })
           }
@@ -151,9 +171,9 @@ export default function Home() {
 
       {/* Section: Grupos */}
       <div className='flex flex-col w-full max-w-8xl my-12'>
-        <h3 className='text-3xl font-light flex items-center relative left-[-27.5px]'>
-          <Link href='/group'>
-            <span className='w-[80px] h-[80px] gradient-section-landing flex justify-center items-center mr-4'>
+        <h3 className='flex items-center justify-between'>
+          <Link className='relative left-[-27.5px]' href='/group'>
+            <span className='w-[80px] h-[80px] gradient-section-landing flex justify-center items-center mr-3'>
               <Image
                 className='inline-block'
                 src="/groups_icon.png"
@@ -164,7 +184,12 @@ export default function Home() {
               />
             </span>
             
-            <span className='text-3xl font-light text-neutral-100'>Grupos</span>
+            <span className='text-2xl font-light text-neutral-100 uppercase'>Grupos</span>
+          </Link>
+
+          <Link href="/group" className='text-sm text-neutral-200'>
+            ver todos
+            <IconArrowRight size={20} />
           </Link>
         </h3>
 
@@ -194,9 +219,9 @@ export default function Home() {
 
       {/* Section: Labs */}
       <div className='flex flex-col w-full max-w-8xl my-12'>
-        <h3 className='text-3xl font-light flex items-center relative left-[-27.5px]'>
-          <Link href='https://www.fablabs.io/labs' target='_blank'>
-            <span className='w-[80px] h-[80px] gradient-section-landing flex justify-center items-center mr-4'>
+        <h3 className='flex items-center justify-between'>
+          <Link className='relative left-[-27.5px]' href='https://www.fablabs.io/labs' target='_blank'>
+            <span className='w-[80px] h-[80px] gradient-section-landing flex justify-center items-center mr-3'>
               <Image
                 className='inline-block'
                 src="/groups_icon.png"
@@ -207,7 +232,7 @@ export default function Home() {
               />
             </span>
             
-            <span className='text-3xl font-light text-neutral-100'>Labs</span>
+            <span className='text-2xl font-light text-neutral-100 uppercase'>Labs</span>
           </Link>
         </h3>
 

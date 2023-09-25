@@ -7,7 +7,7 @@ export default function PaginationLanding({total, initialPage}: {total: number, 
     const renderPaginationItem = (props: PaginationItemRenderProps) => {
         if (props.value === PaginationItemType.NEXT) {
             return (
-              <button className={cn(props.className, "bg-transparent min-w-8 w-8 h-8 text-gray-300")} onClick={props.onNext}>
+              <button key={props.value} className={cn(props.className, "bg-transparent min-w-8 w-8 h-8 text-gray-300")} onClick={props.onNext}>
                 <ChevronIcon className="rotate-180" />
               </button>
             );
@@ -15,19 +15,20 @@ export default function PaginationLanding({total, initialPage}: {total: number, 
       
           if (props.value === PaginationItemType.PREV) {
             return (
-              <button className={cn(props.className, "bg-transparent min-w-8 w-8 h-8 text-gray-300")} onClick={props.onPrevious}>
+              <button key={props.value} className={cn(props.className, "bg-transparent min-w-8 w-8 h-8 text-gray-300")} onClick={props.onPrevious}>
                 <ChevronIcon />
               </button>
             );
           }
       
           if (props.value === PaginationItemType.DOTS) {
-            return <button className={cn(props.className, "bg-transparent text-gray-300")}>...</button>;
+            return <button key={props.value} className={cn(props.className, "bg-transparent text-gray-300")}>...</button>;
           }
     
           // cursor
         return (
           <button
+            key={props.value}
             ref={props.ref}
             className={cn(props.className, "bg-transparent text-gray-300")}
             onClick={() => props.setPage(props.value as number)}
