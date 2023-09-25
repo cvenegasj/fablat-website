@@ -1,8 +1,10 @@
 
-export default function ParticipantView({ id }: {id: string}) {
+export default function ParticipantView({params}: any) {
+    const {id} = params;
+
     return (
         <main className="flex flex-col min-h-screen">
-            One participant {id}
+            Participant {id}
         </main>
     );
 }

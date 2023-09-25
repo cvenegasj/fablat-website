@@ -1,7 +1,11 @@
 
 
-export default function GroupView({ id }: {id: string}) {
+export default function GroupView({params}: any) {
+    const {id} = params;
+
     return (
-        <h1>Group {id}</h1>
+        <main className="flex flex-col min-h-screen">
+            Group {id}
+        </main>
     );
 }

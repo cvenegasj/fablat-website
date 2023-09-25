@@ -62,7 +62,7 @@ export default function ParticipantsGeneral() {
         switch (columnKey) {
             case "displayName":
                 return (
-                    <Link href={`/person/${user.id}`}>
+                    <Link href={`/participant/${user.id}`}>
                         <User
                             avatarProps={{size: "lg", src: user.avatarUrl}}
                             description={user.email}
