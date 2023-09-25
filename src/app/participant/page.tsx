@@ -17,7 +17,7 @@ import { UserDto } from "../shared/types";
 import useSWR from "swr";
 
 
-const fetcher = (...args) => fetch(...args).then((res) => res.json());
+const fetcher = (...args: string[]) => fetch(args[0]).then((res) => res.json());
 
 const tableHeaders: {key: string, label: string}[] = [
     {key: "displayName", label: "NOMBRE"},
