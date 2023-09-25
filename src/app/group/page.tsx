@@ -134,7 +134,7 @@ export default function GroupsGeneral() {
 
 
             {/* Filtros */}
-            <div className="flex w-full mt-12">
+            {/* <div className="flex w-full mt-12">
                 <div className="flex-grow">
                     <Select
                         className="w-full"
@@ -170,7 +170,7 @@ export default function GroupsGeneral() {
                         }}
                     </Select>
                 </div>
-            </div>
+            </div> */}
 
             <Divider className="my-12" />
 
