@@ -2,28 +2,28 @@ import { apiBaseUrl } from "../shared/constants";
 import useSWR from "swr";
 import { UserDtoOld } from "../shared/types.old";
 
-const fetcher = (...args: any) => fetch(args).then((res) => res.json() as Promise<UserDtoOld[]>);
+const fetcher = (...args: any) => fetch(args).then((res) => res.json());
 
 export const fetchUsers = (page: number, size: number) => {
-    const {data, error, isLoading} = useSWR(`${apiBaseUrl}/auth/fabbers?page=${page}&size=${size}`, fetcher, {
+    const {data: usersData, error: isErrorUsers, isLoading: isLoadingUsers} = useSWR(`${apiBaseUrl}/auth/fabbers?page=${page}&size=${size}`, fetcher, {
         keepPreviousData: true,
     });
 
-    return [
-        data,
-        isLoading,
-        error
-    ];
+    return {
+        usersData,
+        isLoadingUsers,
+        isErrorUsers
+    };
 }
 
 export const fetchUsersCount = () => {
-    const {data, error, isLoading} = useSWR(`${apiBaseUrl}/auth/fabbers/count`, fetcher, {
+    const {data: usersCount, error: isErrorCount, isLoading: isLoadingCount} = useSWR(`${apiBaseUrl}/auth/fabbers/count`, fetcher, {
         keepPreviousData: true,
     });
 
-    return [
-        data,
-        isLoading,
-        error
-    ];
+    return {
+        usersCount,
+        isLoadingCount,
+        isErrorCount
+    };
 }

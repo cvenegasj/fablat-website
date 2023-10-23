@@ -20,8 +20,8 @@ export default function GroupsSectionLanding() {
     const [totalPages, setTotalPages] = useState<number>(1);
 
     const pageSize = 18;
-    const [groupsData, isLoadingGroups, isErrorGroups] = fetchGroups(currentPage, pageSize);
-    const [groupsCount, isLoadingCount, isErrorCount] = fetchGroupsCount();
+    const {groupsData, isLoadingGroups, isErrorGroups} = fetchGroups(currentPage, pageSize);
+    const {groupsCount, isLoadingCount, isErrorCount} = fetchGroupsCount();
 
     useEffect(() => {
       if (groupsData) {
@@ -37,6 +37,7 @@ export default function GroupsSectionLanding() {
         setTotalPages(pages);
       }
     }, [groupsCount]);
+    
 
     if (isErrorGroups || isErrorCount) return <p>Error al cargar datos.</p>
     if (isLoadingGroups || isLoadingCount) return <Spinner />

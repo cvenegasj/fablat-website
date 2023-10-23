@@ -11,7 +11,7 @@ import { Spinner } from '@nextui-org/spinner';
 import { Link } from '@nextui-org/link';
 import { cn } from '@nextui-org/react';
 
-import { useEffect, useMemo, useState } from 'react';
+import { useEffect, useState } from 'react';
 import { UserDtoOld } from '../shared/types.old';
 
 
@@ -21,8 +21,8 @@ export default function MembersSectionLanding() {
     const [totalPages, setTotalPages] = useState<number>(1);
 
     const pageSize = 18;
-    const [usersData, isLoadingUsers, isErrorUsers] = fetchUsers(currentPage, pageSize);
-    const [usersCount, isLoadingCount, isErrorCount] = fetchUsersCount();
+    const {usersData, isLoadingUsers, isErrorUsers} = fetchUsers(currentPage, pageSize);
+    const {usersCount, isLoadingCount, isErrorCount} = fetchUsersCount();
 
     useEffect(() => {
       if (usersData) {
@@ -34,10 +34,11 @@ export default function MembersSectionLanding() {
     useEffect(() => {
       if (usersCount) {
         console.log("users count: ", usersCount);
-        let pages = Math.ceil(usersCount / pageSize);
+        let pages: number = Math.ceil(usersCount / pageSize);
         setTotalPages(pages);
       }
     }, [usersCount]);
+    
 
     // let totalPages = useMemo(() => {
     //   return Math.ceil(usersCount / pageSize);
