@@ -17,8 +17,6 @@ import { UserDto } from "../shared/types";
 import useSWR from "swr";
 
 
-const fetcher = (...args: string[]) => fetch(args[0]).then((res) => res.json());
-
 const tableHeaders: {key: string, label: string}[] = [
     {key: "displayName", label: "NOMBRE"},
     {key: "score", label: "PUNTAJE DE IMPACTO"},
@@ -32,7 +30,7 @@ const tableHeaders: {key: string, label: string}[] = [
 
 const countriesList: any[] = Array.from(countries.values());
 
-const users: UserDto[] = [
+var usersToDisplay: UserDto[] = [
     {id: "fs", email: "email@gmail.com", country: "pe",  displayName: "Grace Schwan", avatarUrl: "https://i.pravatar.cc/150?u=a04258114e29026302d", score: 50, groupsJoined: [{id: "4asdf", name: "first", avatarUrl: "https://i.pravatar.cc/200"}, {id: "44rf", name: "second", avatarUrl: "https://i.pravatar.cc/200"}, {id: "52345f", name: "third", avatarUrl: null}], workshopsCount: 5, eventsCount: 4},
     {id: "fg", email: "email@gmail.com", country: "ar",  displayName: "Benito Juárez", avatarUrl: "https://i.pravatar.cc/150?u=a042581f4e29026024d", score: 43, groupsJoined: [{id: "543ff", name: "first", avatarUrl: "https://i.pravatar.cc/200"}, {id: "432", name: "second", avatarUrl: "https://i.pravatar.cc/200"}], workshopsCount: 3, eventsCount: 2},
     {id: "fsasdf", email: "email@gmail.com", country: "pe",  displayName: "Carlos Venegas", avatarUrl: "https://i.pravatar.cc/150?u=a04258a2462d826712d", score: 40, groupsJoined: [{id: "fsdf44", name: "third", avatarUrl: "https://i.pravatar.cc/200"}], workshopsCount: 1, eventsCount: 0},
@@ -53,6 +51,16 @@ const users: UserDto[] = [
     {id: "fsase77", email: "email@gmail.com", country: "pe",  displayName: "Carlos Gonzales", avatarUrl: "https://i.pravatar.cc/150?u=a042581f4e29026704d", score: 8, groupsJoined: [{id: "5544g", name: "first", avatarUrl: "https://i.pravatar.cc/200"}, {id: "7675g", name: "second", avatarUrl: "https://i.pravatar.cc/200"}, {id: "98898f", name: "third", avatarUrl: "https://i.pravatar.cc/200"}], workshopsCount: 3, eventsCount: 4},
     {id: "ffbbf", email: "email@gmail.com", country: "br",  displayName: "Carlos Venegas Jara", avatarUrl: "https://i.pravatar.cc/150?u=a04258114e29026302d", score: 4, groupsJoined: [], workshopsCount: 3, eventsCount: 4},
 ];
+
+
+const fetcher = (...args: string[]) => fetch(args[0]).then((res) => res.json());
+
+const fetchUsersData = (page: number, items: number) => {
+  const {data, isLoading} = useSWR(`https://res.fab.lat/user?page=${page}&items=${items}`, fetcher, {
+      keepPreviousData: true,
+  });
+  return [data, isLoading] as const;
+}
 
 
 export default function ParticipantsGeneral() {
@@ -106,17 +114,9 @@ export default function ParticipantsGeneral() {
 
     // For table pagination
     const [page, setPage] = React.useState(1);
-
-    const {data, isLoading} = useSWR(`https://swapi.py4e.com/api/people?page=${page}`, fetcher, {
-        keepPreviousData: true,
-    });
-
-    const rowsPerPage = 20;
-
-    const pages = React.useMemo(() => {
-        return data?.count ? Math.ceil(data.count / rowsPerPage) : 0;
-    }, [data?.count, rowsPerPage]);
-
+    const [data, isLoading] = fetchUsersData(page, 20);
+    // usersToDisplay = data;
+    const pages = 10; // TODO
     const loadingState = isLoading || data?.results.length === 0 ? "loading" : "idle";
 
     return (
@@ -237,7 +237,7 @@ export default function ParticipantsGeneral() {
                             {(header) => <TableColumn key={header.key}>{header.label}</TableColumn>}
                         </TableHeader>
 
-                        <TableBody items={users}>
+                        <TableBody items={usersToDisplay}>
                             {
                             (user) =>
                                 <TableRow key={user.id}>

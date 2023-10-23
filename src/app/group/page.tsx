@@ -15,9 +15,6 @@ import React from "react";
 import { GroupDto } from "../shared/types";
 import useSWR from "swr";
 
-
-const fetcher = (...args: string[]) => fetch(args[0]).then((res) => res.json());
-
 const tableHeaders: {key: string, label: string}[] = [
     {key: "name", label: "NOMBRE"},
     {key: "score", label: "PUNTAJE DE IMPACTO"},
@@ -28,11 +25,20 @@ const tableHeaders: {key: string, label: string}[] = [
 
 const countriesList: any[] = Array.from(countries.values());
 
-const groups: GroupDto[] = [
+var groupsToDisplay: GroupDto[] = [
     {id: '1', name: 'First Group', score: 15, membersCount: 2, imgUrl: '', workshopsCount: 10, eventsCount: 5},
     {id: '2', name: 'The Best Group', score: 10, membersCount: 8, imgUrl: '', workshopsCount: 0, eventsCount: 6},
     // {id: '', name: '', score: 15, membersCount: 2, imgUrl: '',},
 ];
+
+const fetcher = (...args: string[]) => fetch(args[0]).then((res) => res.json());
+
+const fetchGroupsData = (page: number, items: number) => {
+    const {data, isLoading} = useSWR(`https://res.fab.lat/group?page=${page}&items=${items}`, fetcher, {
+        keepPreviousData: true,
+    });
+    return [data, isLoading] as const;
+}
 
 
 export default function GroupsGeneral() {
@@ -61,17 +67,9 @@ export default function GroupsGeneral() {
 
     // For table pagination
     const [page, setPage] = React.useState(1);
-
-    const {data, isLoading} = useSWR(`https://swapi.py4e.com/api/people?page=${page}`, fetcher, {
-        keepPreviousData: true,
-    });
-
-    const rowsPerPage = 20;
-
-    const pages = React.useMemo(() => {
-        return data?.count ? Math.ceil(data.count / rowsPerPage) : 0;
-    }, [data?.count, rowsPerPage]);
-
+    const [data, isLoading] = fetchGroupsData(page, 20);
+    // groupsToDisplay = data;
+    const pages = 10; // TODO
     const loadingState = isLoading || data?.results.length === 0 ? "loading" : "idle";
 
     return (
@@ -201,7 +199,7 @@ export default function GroupsGeneral() {
                             {(header) => <TableColumn key={header.key}>{header.label}</TableColumn>}
                         </TableHeader>
 
-                        <TableBody items={groups}>
+                        <TableBody items={groupsToDisplay}>
                             {
                             (group) =>
                                 <TableRow key={group.id}>

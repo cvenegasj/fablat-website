@@ -3,7 +3,7 @@
 import { Pagination, PaginationItemRenderProps, PaginationItemType } from "@nextui-org/pagination";
 import { cn } from '@nextui-org/react';
 
-export default function PaginationLanding({total, initialPage}: {total: number, initialPage: number}) {
+export default function PaginationLanding({total, initialPage, onSetPage}: {total: number, initialPage: number, onSetPage: Function}) {
     const renderPaginationItem = (props: PaginationItemRenderProps) => {
         if (props.value === PaginationItemType.NEXT) {
             return (

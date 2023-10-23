@@ -1,4 +1,4 @@
-export const apiBaseUrl: string = 'https://fablat-res.simbiocreacion-backend.site';
+export const apiBaseUrl: string = 'https://res.fab.lat';
 
 export const countries: Map<string, any> = new Map<string, any>([
     ["ar", {id: "ar", name:"Argentina", imgUrl: "https://flagcdn.com/ar.svg"}],
