@@ -1,6 +1,6 @@
 'use client';
 
-import { fetchGroups } from "../services/group.service";
+import { fetchGroups, fetchGroupsCount } from "../services/group.service";
 
 import { Avatar, AvatarGroup } from "@nextui-org/avatar";
 import { Image } from "@nextui-org/image";
@@ -16,21 +16,30 @@ import { GroupDtoOld, UserDtoOld } from "../shared/types.old";
 
 export default function GroupsSectionLanding() {
     const [groups, setGroups] = useState<GroupDtoOld[]>([]);
-    const [currentPageGroups, setCurrentPageGroups] = useState(1);
+    const [currentPage, setCurrentPage] = useState<number>(0);
+    const [totalPages, setTotalPages] = useState<number>(1);
 
-    const groupsPerPage = 24; // TODO
-    const totalPagesGroups = 15; // TODO
-    let {data, isLoading, isError} = fetchGroups(currentPageGroups, groupsPerPage);
+    const pageSize = 18;
+    const [groupsData, isLoadingGroups, isErrorGroups] = fetchGroups(currentPage, pageSize);
+    const [groupsCount, isLoadingCount, isErrorCount] = fetchGroupsCount();
 
     useEffect(() => {
-      if (data) {
-        console.log("groups fetched: ", data);
-        setGroups(data);
+      if (groupsData) {
+        console.log("groups fetched: ", groupsData);
+        setGroups(groupsData);
       }
-    }, [data]);
+    }, [groupsData]);
 
-    if (isError) return <p>Error al cargar datos.</p>
-    if (isLoading) return <Spinner />
+    useEffect(() => {
+      if (groupsCount) {
+        console.log("groups count: ", groupsCount);
+        let pages = Math.ceil(groupsCount / pageSize);
+        setTotalPages(pages);
+      }
+    }, [groupsCount]);
+
+    if (isErrorGroups || isErrorCount) return <p>Error al cargar datos.</p>
+    if (isLoadingGroups || isLoadingCount) return <Spinner />
 
     // const handlePageClick = (page: number) => {
     //   {data, isLoading, isError}  = fetchGroups(currentPageGroups, groupsPerPage);
@@ -46,7 +55,7 @@ export default function GroupsSectionLanding() {
         </div>
 
         <div className="flex justify-center">
-            <Pagination showControls total={totalPagesGroups} initialPage={currentPageGroups} renderItem={renderPaginationItem} color="default" onChange={(page) => setCurrentPageGroups(page)} />
+            <Pagination showControls total={totalPages} initialPage={currentPage} renderItem={renderPaginationItem} color="default" onChange={(page) => setCurrentPage(page)} />
         </div>
         </>
     );

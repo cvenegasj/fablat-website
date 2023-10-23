@@ -1,6 +1,6 @@
 'use client';
 
-import { fetchUsers } from '../services/user.service';
+import { fetchUsers, fetchUsersCount } from '../services/user.service';
 
 import { Avatar, AvatarGroup } from '@nextui-org/avatar';
 // import { Badge } from '@nextui-org/badge';
@@ -11,27 +11,40 @@ import { Spinner } from '@nextui-org/spinner';
 import { Link } from '@nextui-org/link';
 import { cn } from '@nextui-org/react';
 
-import { useEffect, useState } from 'react';
+import { useEffect, useMemo, useState } from 'react';
 import { UserDtoOld } from '../shared/types.old';
 
 
 export default function MembersSectionLanding() {
     const [users, setUsers] = useState<UserDtoOld[]>([]);
-    const [currentPageUsers, setCurrentPageUsers] = useState(1);
+    const [currentPage, setCurrentPage] = useState<number>(0);
+    const [totalPages, setTotalPages] = useState<number>(1);
 
-    const usersPerPage = 24; // TODO
-    const totalPagesUsers = 12; // TODO
-    const {data, isLoading, isError} = fetchUsers(1, usersPerPage);
+    const pageSize = 18;
+    const [usersData, isLoadingUsers, isErrorUsers] = fetchUsers(currentPage, pageSize);
+    const [usersCount, isLoadingCount, isErrorCount] = fetchUsersCount();
 
     useEffect(() => {
-      if (data) {
-        console.log("users fetched: ", data);
-        setUsers(data);
+      if (usersData) {
+        console.log("users fetched: ", usersData);
+        setUsers(usersData);
       }
-    }, [data]);
+    }, [usersData]);
 
-    if (isError) return <p>Error al cargar datos.</p>
-    if (isLoading) return <Spinner />
+    useEffect(() => {
+      if (usersCount) {
+        console.log("users count: ", usersCount);
+        let pages = Math.ceil(usersCount / pageSize);
+        setTotalPages(pages);
+      }
+    }, [usersCount]);
+
+    // let totalPages = useMemo(() => {
+    //   return Math.ceil(usersCount / pageSize);
+    // }, [usersCount]);
+
+    if (isErrorUsers || isErrorCount) return <p>Error al cargar datos.</p>
+    if (isLoadingUsers || isLoadingCount) return <Spinner />
 
     return (
         <>
@@ -42,7 +55,7 @@ export default function MembersSectionLanding() {
         </div>
 
         <div className="flex justify-center">
-            <Pagination showControls total={totalPagesUsers} initialPage={currentPageUsers} renderItem={renderPaginationItem} color="default" onChange={(page) => setCurrentPageUsers(page)} />
+            <Pagination showControls total={totalPages} initialPage={currentPage} renderItem={renderPaginationItem} color="default" onChange={(page) => setCurrentPage(page)} />
         </div>
         </>
     );
