@@ -1,6 +1,6 @@
 'use client';
 
-import { fetchUsers, fetchUsersCount } from '../services/user.service';
+import { fetchUsersWithFilter } from '../services/user.service';
 
 import { Avatar, AvatarGroup } from '@nextui-org/avatar';
 // import { Badge } from '@nextui-org/badge';
@@ -12,7 +12,7 @@ import { Link } from '@nextui-org/link';
 import { cn } from '@nextui-org/react';
 
 import { useEffect, useState } from 'react';
-import { UserDtoOld } from '../shared/types.old';
+import { type UserDtoOld } from '../shared/types.old';
 
 
 export default function MembersSectionLanding() {
@@ -21,31 +21,28 @@ export default function MembersSectionLanding() {
     const [totalPages, setTotalPages] = useState<number>(1);
 
     const pageSize = 18;
-    const {usersData, isLoadingUsers, isErrorUsers} = fetchUsers(currentPage, pageSize);
-    const {usersCount, isLoadingCount, isErrorCount} = fetchUsersCount();
+    const {usersData, isLoadingUsers, isErrorUsers} = fetchUsersWithFilter(currentPage, pageSize, new Map());
 
     useEffect(() => {
       if (usersData) {
-        console.log("users fetched: ", usersData);
-        setUsers(usersData);
+        console.log("users fetched: ", usersData.content);
+        console.log("total pages: ", usersData.totalPages);
+        setUsers(usersData.content);
+        setTotalPages(usersData.totalPages);
       }
     }, [usersData]);
 
-    useEffect(() => {
-      if (usersCount) {
-        console.log("users count: ", usersCount);
-        let pages: number = Math.ceil(usersCount / pageSize);
-        setTotalPages(pages);
-      }
-    }, [usersCount]);
+    // useEffect(() => {
+    //   if (usersCount) {
+    //     // console.log("users count: ", usersCount);
+    //     let pages: number = Math.ceil(usersCount / pageSize);
+    //     setTotalPages(pages);
+    //   }
+    // }, [usersCount]);
     
 
-    // let totalPages = useMemo(() => {
-    //   return Math.ceil(usersCount / pageSize);
-    // }, [usersCount]);
-
-    if (isErrorUsers || isErrorCount) return <p>Error al cargar datos.</p>
-    if (isLoadingUsers || isLoadingCount) return <Spinner />
+    if (isErrorUsers) return <p>Error al cargar datos.</p>
+    if (isLoadingUsers) return <Spinner />
 
     return (
         <>
