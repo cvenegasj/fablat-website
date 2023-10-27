@@ -1,12 +1,12 @@
 import Image from 'next/image';
 import { Link } from '@nextui-org/link';
-import { IconArrowRight, IconCell, IconHexagon, IconHexagonalPrism } from '@tabler/icons-react';
+import { IconArrowRight } from '@tabler/icons-react';
 
 import MembersSectionLanding from './components/MembersSectionLanding';
 import GroupsSectionLanding from './components/GroupsSectionLanding';
+import { SummaryStats } from './components/SummaryStats';
 
 import React from "react";
-import { fetchLandingStats } from './services/stats.service';
 
 
 // var peopleToDisplay: {id: string, displayName: string, avatarUrl: string, score: number, groupsJoined: any[]}[] = [
@@ -46,9 +46,6 @@ import { fetchLandingStats } from './services/stats.service';
 
 export default function Home() {
 
-  const {statsData, isLoadingStats, isErrorStats} = fetchLandingStats();
-
-
   return (
     <main id="home" className="flex flex-col min-h-screen xl:px-80 lg:px-36 px-20 py-9">
       
@@ -73,67 +70,7 @@ export default function Home() {
         </div>
       </div>
 
-      <div className='flex w-full max-w-8xl mt-14 mb-12 py-7 gap-8'>
-
-        <div className='p-4 grow text-center rounded-2xl backdrop-blur-sm bg-white/20'>
-          <div className='flex justify-center items-center'>
-              {/* <Image
-                  src="/person_icon.png"
-                  alt="Person icon"
-                  width={15}
-                  height={15}
-                  priority
-              /> */}
-            <IconHexagon className='text-emerald-400' size={25} stroke={2} />
-    
-            <p className='text-2xl text-white font-light ml-3'>{(isLoadingStats || isErrorStats) ?  '' : statsData.usersCount}</p>
-          </div>
-
-          <div className='flex justify-center items-center'>
-            <span className='font-normal'>miembros</span>
-          </div>          
-        </div>
-
-        <div className='p-4 grow text-center rounded-2xl backdrop-blur-sm bg-white/20'>
-          <div className='flex justify-center items-center'>
-                {/* <Image
-                    src="/person_icon.png"
-                    alt="Person icon"
-                    width={15}
-                    height={15}
-                    priority
-                /> */}
-              <IconCell className='text-emerald-400' size={25} stroke={2} />
-      
-              <p className='text-2xl text-white font-light ml-3'>{(isLoadingStats || isErrorStats) ? '' : statsData.groupsCount}</p>
-            </div>
-
-            <div className='flex justify-center items-center'>
-              <span className='font-normal'>grupos</span>
-            </div>    
-        </div>
-
-        <div className='p-4 grow text-center rounded-2xl backdrop-blur-sm bg-white/20'>
-          <div className='flex justify-center items-center'>
-                {/* <Image
-                    src="/person_icon.png"
-                    alt="Person icon"
-                    width={15}
-                    height={15}
-                    priority
-                /> */}
-              <IconHexagonalPrism className='text-emerald-400' size={25} stroke={2} />
-      
-            <p className='text-2xl text-white font-light ml-3'>{(isLoadingStats || isErrorStats) ? '' : statsData.labsCount}</p>
-          </div>
-
-          <div className='flex justify-center items-center'>
-            <span className='font-normal'>labs</span>
-          </div>
-        </div>
-      </div>
-
-
+      <SummaryStats />
 
       {/* Section: Personas */}
       <div className='flex flex-col w-full max-w-8xl my-12'>
@@ -150,7 +87,7 @@ export default function Home() {
               />
             </span>
             
-            <span className='text-2xl font-light text-neutral-100 uppercase'>{statsData.membersCount}</span>
+            <span className='text-2xl font-light text-neutral-100 uppercase'>Miembros</span>
           </Link>
 
           <Link href="/participant" className='text-sm text-neutral-200'>
