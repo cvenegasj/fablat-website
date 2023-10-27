@@ -9,6 +9,8 @@ import { Image } from '@nextui-org/image';
 
 import React from 'react';
 
+
+
 const urbanist = Urbanist({ subsets: ['latin'] })
 
 export const metadata = {

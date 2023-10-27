@@ -6,6 +6,7 @@ import MembersSectionLanding from './components/MembersSectionLanding';
 import GroupsSectionLanding from './components/GroupsSectionLanding';
 
 import React from "react";
+import { fetchLandingStats } from './services/stats.service';
 
 
 // var peopleToDisplay: {id: string, displayName: string, avatarUrl: string, score: number, groupsJoined: any[]}[] = [
@@ -44,6 +45,10 @@ import React from "react";
 
 
 export default function Home() {
+
+  const {statsData, isLoadingStats, isErrorStats} = fetchLandingStats();
+
+
   return (
     <main id="home" className="flex flex-col min-h-screen xl:px-80 lg:px-36 px-20 py-9">
       
@@ -81,7 +86,7 @@ export default function Home() {
               /> */}
             <IconHexagon className='text-emerald-400' size={25} stroke={2} />
     
-            <p className='text-2xl text-white font-light ml-3'>523</p>
+            <p className='text-2xl text-white font-light ml-3'>{(isLoadingStats || isErrorStats) ?  '' : statsData.usersCount}</p>
           </div>
 
           <div className='flex justify-center items-center'>
@@ -100,7 +105,7 @@ export default function Home() {
                 /> */}
               <IconCell className='text-emerald-400' size={25} stroke={2} />
       
-              <p className='text-2xl text-white font-light ml-3'>19</p>
+              <p className='text-2xl text-white font-light ml-3'>{(isLoadingStats || isErrorStats) ? '' : statsData.groupsCount}</p>
             </div>
 
             <div className='flex justify-center items-center'>
@@ -119,7 +124,7 @@ export default function Home() {
                 /> */}
               <IconHexagonalPrism className='text-emerald-400' size={25} stroke={2} />
       
-            <p className='text-2xl text-white font-light ml-3'>10</p>
+            <p className='text-2xl text-white font-light ml-3'>{(isLoadingStats || isErrorStats) ? '' : statsData.labsCount}</p>
           </div>
 
           <div className='flex justify-center items-center'>
@@ -145,7 +150,7 @@ export default function Home() {
               />
             </span>
             
-            <span className='text-2xl font-light text-neutral-100 uppercase'>Miembros</span>
+            <span className='text-2xl font-light text-neutral-100 uppercase'>{statsData.membersCount}</span>
           </Link>
 
           <Link href="/participant" className='text-sm text-neutral-200'>
