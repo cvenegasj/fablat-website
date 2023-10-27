@@ -299,8 +299,8 @@ export default function ParticipantsListAll() {
                         </TableHeader>
 
                         <TableBody items={sortedItems} 
-                        isLoading={isLoadingUsers} 
-                        loadingContent={<Spinner size='lg' />}>
+                            isLoading={isLoadingUsers} 
+                            loadingContent={<Spinner size='lg' />}>
                             {
                             (user) =>
                                 <TableRow key={user.idFabber}>

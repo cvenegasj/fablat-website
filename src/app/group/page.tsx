@@ -5,14 +5,14 @@ import { fetchGroupsWithFilter } from "../services/group.service";
 
 import { Input } from "@nextui-org/input";
 import { Divider } from "@nextui-org/divider";
-import { Avatar } from "@nextui-org/avatar";
-import { Chip } from "@nextui-org/chip";
+// import { Avatar } from "@nextui-org/avatar";
+// import { Chip } from "@nextui-org/chip";
 import { User } from "@nextui-org/user";
 import { Link } from "@nextui-org/link";
 import { Pagination } from "@nextui-org/pagination";
 import { Table, TableHeader, TableBody, TableRow, TableColumn, TableCell } from "@nextui-org/table";
 import { IconArrowsSort, IconSearch, IconSortAscendingLetters, IconSortDescending2, IconSortDescendingNumbers } from "@tabler/icons-react";
-import { Select, SelectItem, SortDescriptor, Spinner } from "@nextui-org/react";
+import { SortDescriptor, Spinner } from "@nextui-org/react";
 import { useCallback, useEffect, useMemo, useState } from "react";
 
 import { type GroupDtoOld } from "../shared/types.old";
@@ -82,7 +82,7 @@ export default function GroupsListAll() {
     }, []);
 
 
-    const renderCell = useCallback((group: GroupDtoOld, columnKey: any) => {    
+    const renderCell = useCallback((group: GroupDtoOld, columnKey: any): any => {    
         switch (columnKey) {
             case "name":
                 return (
@@ -199,8 +199,8 @@ export default function GroupsListAll() {
                         </TableHeader>
 
                         <TableBody items={sortedItems}
-                        isLoading={isLoadingGroups} 
-                        loadingContent={<Spinner size='lg' />}>
+                            isLoading={isLoadingGroups} 
+                            loadingContent={<Spinner size='lg' />}>
                             {
                             (group) =>
                                 <TableRow key={group.id}>
