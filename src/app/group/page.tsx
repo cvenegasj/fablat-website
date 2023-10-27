@@ -1,5 +1,8 @@
 
 'use client';
+
+import { fetchGroupsWithFilter } from "../services/group.service";
+
 import { Input } from "@nextui-org/input";
 import { Divider } from "@nextui-org/divider";
 import { Avatar } from "@nextui-org/avatar";
@@ -9,49 +12,84 @@ import { Link } from "@nextui-org/link";
 import { Pagination } from "@nextui-org/pagination";
 import { Table, TableHeader, TableBody, TableRow, TableColumn, TableCell } from "@nextui-org/table";
 import { IconArrowsSort, IconSearch, IconSortAscendingLetters, IconSortDescending2, IconSortDescendingNumbers } from "@tabler/icons-react";
-import { Select, SelectItem } from "@nextui-org/react";
-import { countries } from "../shared/constants";
-import React from "react";
-import { GroupDto } from "../shared/types";
-import useSWR from "swr";
+import { Select, SelectItem, SortDescriptor, Spinner } from "@nextui-org/react";
+import { useCallback, useEffect, useMemo, useState } from "react";
 
-const tableHeaders: {key: string, label: string}[] = [
-    {key: "name", label: "NOMBRE"},
-    {key: "score", label: "PUNTAJE DE IMPACTO"},
-    {key: "membersCount", label: "N. MIEMBROS"},
-    {key: "workshopsCount", label: "N. TALLERES"},
-    {key: "eventsCount", label: "N. EVENTOS"},
-];
+import { type GroupDtoOld } from "../shared/types.old";
 
-const countriesList: any[] = Array.from(countries.values());
 
-var groupsToDisplay: GroupDto[] = [
-    {id: '1', name: 'First Group', score: 15, membersCount: 2, imgUrl: '', workshopsCount: 10, eventsCount: 5},
-    {id: '2', name: 'The Best Group', score: 10, membersCount: 8, imgUrl: '', workshopsCount: 0, eventsCount: 6},
-    // {id: '', name: '', score: 15, membersCount: 2, imgUrl: '',},
-];
+// var groupsToDisplay: GroupDto[] = [
+//     {id: '1', name: 'First Group', score: 15, membersCount: 2, imgUrl: '', workshopsCount: 10, eventsCount: 5},
+//     {id: '2', name: 'The Best Group', score: 10, membersCount: 8, imgUrl: '', workshopsCount: 0, eventsCount: 6},
+//     // {id: '', name: '', score: 15, membersCount: 2, imgUrl: '',},
+// ];
 
-const fetcher = (...args: string[]) => fetch(args[0]).then((res) => res.json());
 
-const fetchGroupsData = (page: number, items: number) => {
-    const {data, isLoading} = useSWR(`https://res.fab.lat/group?page=${page}&items=${items}`, fetcher, {
-        keepPreviousData: true,
+export default function GroupsListAll() {
+    const [groups, setGroups] = useState<GroupDtoOld[]>([]);
+    const [currentPage, setCurrentPage] = useState<number>(0); // 0-based
+    const [totalPages, setTotalPages] = useState<number>(1);
+    const [filterMap, setFilterMap] = useState<Map<string, any>>(new Map<string, any>([['name', '']]));
+    const [sortDescriptor, setSortDescriptor] = useState<SortDescriptor>({
+        column: "name",
+        direction: "ascending",
     });
-    return [data, isLoading] as const;
-}
+
+    const pageSize = 30;
+    const {groupsData, isLoadingGroups, isErrorGroups} = fetchGroupsWithFilter(currentPage, pageSize, filterMap);
+
+    useEffect(() => {
+      if (groupsData) {
+        // console.log("groups fetched: ", groupsData.content);
+        // console.log("total pages: ", groupsData.totalPages);
+        setGroups(groupsData.content);
+        setTotalPages(groupsData.totalPages);
+      }
+    }, [groupsData]);
+
+    const sortedItems = useMemo(() => {
+        return [...groups].sort((a, b) => {
+            const first = a[sortDescriptor.column as keyof GroupDtoOld];
+            const second = b[sortDescriptor.column as keyof GroupDtoOld];
+            const cmp = first < second ? -1 : first > second ? 1 : 0;
+
+            return sortDescriptor.direction === "descending" ? -cmp : cmp;
+        });
+    }, [sortDescriptor, groups]);
 
 
-export default function GroupsGeneral() {
-    const renderCell = React.useCallback((group: GroupDto, columnKey: any) => {
-        const cellValue = group[columnKey as keyof GroupDto];
+    const handleChangeSearchBox = useCallback((value: string) => {
+        if (value) {
+            setFilterMap(filterMap => {
+                filterMap.set('name', value);
+                return new Map(filterMap);
+            });
+            setCurrentPage(0);
+        } else {
+            setFilterMap(filterMap => {
+                filterMap.set('name', '');
+                return new Map(filterMap);
+            });
+        }
+    }, []);
     
+    const handleClearSearchBox = useCallback(() => {
+        setFilterMap(filterMap => {
+            filterMap.set('name', '');
+            return new Map(filterMap);
+        });
+        setCurrentPage(0);
+    }, []);
+
+
+    const renderCell = useCallback((group: GroupDtoOld, columnKey: any) => {    
         switch (columnKey) {
             case "name":
                 return (
                     <Link href={`/group/${group.id}`}>
                         <User
                             avatarProps={{size: "lg", src: group.imgUrl}}
-                            name={cellValue}
+                            name={group.name}
                             classNames={{
                                 name: "text-md text-neutral-700",
                                 description: "text-sm text-neutral-500"
@@ -61,37 +99,30 @@ export default function GroupsGeneral() {
                     </Link>
                 );
             default:
-                return cellValue;
+                return group[columnKey as keyof GroupDtoOld];
         }
     }, []);
-
-    // For table pagination
-    const [page, setPage] = React.useState(1);
-    const [data, isLoading] = fetchGroupsData(page, 20);
-    // groupsToDisplay = data;
-    const pages = 10; // TODO
-    const loadingState = isLoading || data?.results.length === 0 ? "loading" : "idle";
 
     return (
         <main className="flex flex-col min-h-screen xl:px-80 lg:px-36 px-20 py-9">
             <div className="flex w-full">
                 <div className="flex-grow">
                     <Input
+                        isClearable
                         className="w-full"
                         type="text"
-                        label="Buscar por nombre de grupo"
-                        labelPlacement="outside"
-                        isClearable
-                        startContent={
-                            <IconSearch color="gray" size={25} />
-                        }
+                        placeholder="Buscar por nombre de grupo"
+                        startContent={<IconSearch color="gray" size={25} />}
+                        value={filterMap.get('name')}
+                        onClear={() => handleClearSearchBox()}
+                        onValueChange={handleChangeSearchBox}
                         classNames={{
-                            label: "text-stone-500 font-normal",
-                            input: "text-stone-700 text-lg",
+                            input: ["text-stone-700 text-lg", "placeholder:text-default-700/50 placeholder:text-base"],
                         }}
                     />
                 </div>
-                <div className="flex-shrink-0 w-52 ml-4 flex items-end">
+
+                {/* <div className="flex-shrink-0 w-52 ml-4 flex items-end">
                     <Select
                         className="w-full"
                         label="Ordenar por"
@@ -127,48 +158,8 @@ export default function GroupsGeneral() {
                             Fecha de creación
                         </SelectItem>
                     </Select>
-                </div>
+                </div> */}
             </div>
-
-
-            {/* Filtros */}
-            {/* <div className="flex w-full mt-12">
-                <div className="flex-grow">
-                    <Select
-                        className="w-full"
-                        items={countriesList}
-                        label="Filtrar por país"
-                        labelPlacement="outside"
-                        variant="bordered"
-                        isMultiline={true}
-                        selectionMode="multiple"
-                        classNames={{
-                            base: "text-stone-500 font-normal",
-                            label: "text-stone-500 font-normal",
-                            listbox: "text-stone-700 font-normal"
-                        }}
-                        renderValue={(items) => {
-                            return (
-                              <div className="flex flex-wrap gap-1">
-                                {
-                                items.map((item) => (
-                                  <Chip key={item.key}>{item.data.name}</Chip>
-                                ))
-                                }
-                              </div>
-                            );
-                        }}
-                    >
-                        {(country) => {
-                            return (
-                                <SelectItem key={country.id} startContent={<Avatar alt={country.name} className="w-6 h-6" src={country.imgUrl} />}>
-                                    {country.name}
-                                </SelectItem>
-                            );
-                        }}
-                    </Select>
-                </div>
-            </div> */}
 
             <Divider className="my-12" />
 
@@ -177,7 +168,10 @@ export default function GroupsGeneral() {
                 {/* Table Container */}
                 <div className="w-full">
                     <Table 
-                        aria-label="Table with users data" 
+                        aria-label="Table with groups data"
+                        isHeaderSticky
+                        sortDescriptor={sortDescriptor}
+                        onSortChange={(sortDescriptor) => setSortDescriptor(sortDescriptor)}
                         bottomContent={
                             <div className="flex w-full justify-center">
                               <Pagination
@@ -185,21 +179,28 @@ export default function GroupsGeneral() {
                                 showControls
                                 showShadow
                                 color="secondary"
-                                page={page}
-                                total={pages}
-                                onChange={(page) => setPage(page)}
+                                page={currentPage + 1}
+                                total={totalPages}
+                                onChange={(page) => setCurrentPage(page)}
                               />
                             </div>
                           }
                         classNames={{
-                            wrapper: "w-full"
+                            wrapper: "w-full",
+                            table: "min-h-[200px]",
                         }}>
 
-                        <TableHeader columns={tableHeaders}>
-                            {(header) => <TableColumn key={header.key}>{header.label}</TableColumn>}
+                        <TableHeader>
+                            <TableColumn key="name" allowsSorting>NOMBRE</TableColumn>
+                            <TableColumn key="score" allowsSorting>PUNTAJE DE IMPACTO</TableColumn>
+                            <TableColumn key="membersCount" allowsSorting>N. MIEMBROS</TableColumn>
+                            <TableColumn key="workshopsCount" allowsSorting>N. TALLERES</TableColumn>
+                            <TableColumn key="eventsCount" allowsSorting>N. EVENTOS</TableColumn>
                         </TableHeader>
 
-                        <TableBody items={groupsToDisplay}>
+                        <TableBody items={sortedItems}
+                        isLoading={isLoadingGroups} 
+                        loadingContent={<Spinner size='lg' />}>
                             {
                             (group) =>
                                 <TableRow key={group.id}>

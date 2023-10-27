@@ -1,6 +1,6 @@
 'use client';
 
-import { fetchGroups, fetchGroupsCount } from "../services/group.service";
+import { fetchGroups, fetchGroupsCount, fetchGroupsWithFilter } from "../services/group.service";
 
 import { Avatar, AvatarGroup } from "@nextui-org/avatar";
 import { Image } from "@nextui-org/image";
@@ -20,32 +20,20 @@ export default function GroupsSectionLanding() {
     const [totalPages, setTotalPages] = useState<number>(1);
 
     const pageSize = 18;
-    const {groupsData, isLoadingGroups, isErrorGroups} = fetchGroups(currentPage, pageSize);
-    const {groupsCount, isLoadingCount, isErrorCount} = fetchGroupsCount();
+    const {groupsData, isLoadingGroups, isErrorGroups} = fetchGroupsWithFilter(currentPage, pageSize, new Map());
 
     useEffect(() => {
       if (groupsData) {
-        console.log("groups fetched: ", groupsData);
-        setGroups(groupsData);
+        // console.log("groups fetched: ", groupsData.content);
+        // console.log("total pages: ", groupsData.totalPages);
+        setGroups(groupsData.content);
+        setTotalPages(groupsData.totalPages);
       }
     }, [groupsData]);
-
-    useEffect(() => {
-      if (groupsCount) {
-        console.log("groups count: ", groupsCount);
-        let pages = Math.ceil(groupsCount / pageSize);
-        setTotalPages(pages);
-      }
-    }, [groupsCount]);
     
 
-    if (isErrorGroups || isErrorCount) return <p>Error al cargar datos.</p>
-    if (isLoadingGroups || isLoadingCount) return <Spinner />
-
-    // const handlePageClick = (page: number) => {
-    //   {data, isLoading, isError}  = fetchGroups(currentPageGroups, groupsPerPage);
-    //   setCurrentPageGroups(page);
-    // };
+    if (isErrorGroups) return <p>Error al cargar datos.</p>
+    if (isLoadingGroups) return <Spinner />
 
     return (
         <>

@@ -48,7 +48,7 @@ const countriesMap: Map<string, Country> = new Map(countries.map(e => [e.cca3, e
 // ];
 
 
-export default function ParticipantsGeneral() {
+export default function ParticipantsListAll() {
     const [users, setUsers] = useState<UserDtoOld[]>([]);
     const [currentPage, setCurrentPage] = useState<number>(0); // 0-based
     const [totalPages, setTotalPages] = useState<number>(1);
@@ -61,7 +61,6 @@ export default function ParticipantsGeneral() {
     const pageSize = 30;
     const {usersData, isLoadingUsers, isErrorUsers} = fetchUsersWithFilter(currentPage, pageSize, filterMap);
 
-
     useEffect(() => {
       if (usersData) {
         console.log("users fetched: ", usersData.content);
@@ -70,15 +69,6 @@ export default function ParticipantsGeneral() {
         setTotalPages(usersData.totalPages);
       }
     }, [usersData]);
-
-    // useEffect(() => {
-    //   if (usersCount) {
-    //     // console.log("users count: ", usersCount);
-    //     let pages: number = Math.ceil(usersCount / pageSize);
-    //     setTotalPages(pages);
-    //   }
-    // }, [usersCount]);
-    
 
     const sortedItems = useMemo(() => {
         return [...users].sort((a, b) => {
@@ -89,63 +79,6 @@ export default function ParticipantsGeneral() {
             return sortDescriptor.direction === "descending" ? -cmp : cmp;
         });
     }, [sortDescriptor, users]);
-
-
-    // if (isErrorUsers || isErrorCount) return <p>Error al cargar datos.</p>
-    // if (isLoadingUsers || isLoadingCount) return <Spinner />
-
-
-    const renderCell = useCallback((user: UserDtoOld, columnKey: any) => {
-        switch (columnKey) {
-            case "name":
-                return (
-                    <Link href={`/participant/${user.idFabber}`}>
-                        <User
-                            avatarProps={{size: "lg", src: user.avatarUrl}}
-                            description={user.email}
-                            name={user.name}
-                            classNames={{
-                                name: "text-md text-neutral-700",
-                                description: "text-sm text-neutral-500"
-                            }}
-                        >
-                            {user.email}
-                        </User>
-                    </Link>
-                );
-            case "country":
-                const country = user.country && countriesMap.has(user.country) ? countriesMap.get(user.country) : undefined;
-                if (country) {
-                    return (
-                        <Tooltip showArrow={true} content={<span className='text-zinc-500'>{country.name.common}</span>}>
-                            <Avatar alt={country.name.common} size="sm" src={country.flags.svg} showFallback name={country.name.common} />
-                        </Tooltip>
-                    );
-                } else {
-                    return ('');
-                }
-                
-            case "groupsJoined":
-                return (
-                    <AvatarGroup isBordered isGrid max={7}>
-                        {
-                        user.groupsJoined.map(group => {
-                            return (
-                                <Tooltip key={group.id} showArrow={true} content={<span className='text-zinc-500'>{group.name}</span>}>
-                                    <Link href={`/group/${group.id}`}>
-                                        <Avatar src={group.imgUrl} radius="lg" showFallback fallback={<Image src="/fablat_2023_logo.png" />} />
-                                    </Link>
-                                </Tooltip>
-                            );
-                        })
-                        }
-                    </AvatarGroup>
-                );  
-            default:
-                return user[columnKey as keyof UserDtoOld];
-        }
-    }, []);
-
 
 
     const handleChangeSearchBox = useCallback((value: string) => {
@@ -183,6 +116,57 @@ export default function ParticipantsGeneral() {
                 filterMap.set('countries', new Set());
                 return new Map(filterMap);
             });
+        }
+    }, []);
+
+
+    const renderCell = useCallback((user: UserDtoOld, columnKey: any) => {
+        switch (columnKey) {
+            case "name":
+                return (
+                    <Link href={`/participant/${user.idFabber}`}>
+                        <User
+                            avatarProps={{size: "lg", src: user.avatarUrl}}
+                            description={user.email}
+                            name={user.name}
+                            classNames={{
+                                name: "text-md text-neutral-700",
+                                description: "text-sm text-neutral-500"
+                            }}
+                        >
+                            {user.email}
+                        </User>
+                    </Link>
+                );
+            case "country":
+                const country = user.country && countriesMap.has(user.country) ? countriesMap.get(user.country) : undefined;
+                if (country) {
+                    return (
+                        <Tooltip showArrow={true} content={<span className='text-zinc-500'>{country.name.common}</span>}>
+                            <Avatar alt={country.name.common} size="sm" src={country.flags.svg} showFallback name={country.name.common} />
+                        </Tooltip>
+                    );
+                } else {
+                    return ('');
+                }
+            case "groupsJoined":
+                return (
+                    <AvatarGroup isBordered isGrid max={7}>
+                        {
+                        user.groupsJoined.map(group => {
+                            return (
+                                <Tooltip key={group.id} showArrow={true} content={<span className='text-zinc-500'>{group.name}</span>}>
+                                    <Link href={`/group/${group.id}`}>
+                                        <Avatar src={group.imgUrl} radius="lg" showFallback fallback={<Image src="/fablat_2023_logo.png" />} />
+                                    </Link>
+                                </Tooltip>
+                            );
+                        })
+                        }
+                    </AvatarGroup>
+                );  
+            default:
+                return user[columnKey as keyof UserDtoOld];
         }
     }, []);
 
@@ -304,6 +288,7 @@ export default function ParticipantsGeneral() {
                             wrapper: "w-full",
                             table: "min-h-[200px]",
                         }}>
+
                         <TableHeader>
                             <TableColumn key="name" allowsSorting>NOMBRE</TableColumn>
                             <TableColumn key="score" allowsSorting>PUNTAJE DE IMPACTO</TableColumn>

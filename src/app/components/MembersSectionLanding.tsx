@@ -25,20 +25,12 @@ export default function MembersSectionLanding() {
 
     useEffect(() => {
       if (usersData) {
-        console.log("users fetched: ", usersData.content);
-        console.log("total pages: ", usersData.totalPages);
+        // console.log("users fetched: ", usersData.content);
+        // console.log("total pages: ", usersData.totalPages);
         setUsers(usersData.content);
         setTotalPages(usersData.totalPages);
       }
     }, [usersData]);
-
-    // useEffect(() => {
-    //   if (usersCount) {
-    //     // console.log("users count: ", usersCount);
-    //     let pages: number = Math.ceil(usersCount / pageSize);
-    //     setTotalPages(pages);
-    //   }
-    // }, [usersCount]);
     
 
     if (isErrorUsers) return <p>Error al cargar datos.</p>
