@@ -5,7 +5,9 @@ import useSWR from "swr";
 const fetcher = (...args: any) => fetch(args).then((res) => res.json());
 
 export const fetchLandingStats = () => {
-    const {data: statsData, error: isLoadingStats, isLoading: isErrorStats} = useSWR(`${apiBaseUrl}/auth/stats/general`, fetcher);
+    const {data: statsData, error: isLoadingStats, isLoading: isErrorStats} = useSWR(`${apiBaseUrl}/auth/stats/general`, fetcher, {
+        keepPreviousData: true,
+    });
 
     return {
         statsData,

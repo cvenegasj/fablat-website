@@ -10,7 +10,7 @@ export const SummaryStats = () => {
 
     return (
     <div className='flex w-full max-w-8xl mt-14 mb-12 py-7 gap-8'>
-        <div className='p-4 grow text-center rounded-2xl backdrop-blur-sm bg-white/20'>
+        <div className='h-[88px] p-4 grow text-center rounded-2xl backdrop-blur-sm bg-white/20'>
           <div className='flex justify-center items-center'>
               {/* <Image
                   src="/person_icon.png"
@@ -29,7 +29,7 @@ export const SummaryStats = () => {
           </div>          
         </div>
 
-        <div className='p-4 grow text-center rounded-2xl backdrop-blur-sm bg-white/20'>
+        <div className='h-[88px] p-4 grow text-center rounded-2xl backdrop-blur-sm bg-white/20'>
           <div className='flex justify-center items-center'>
                 {/* <Image
                     src="/person_icon.png"
@@ -48,7 +48,7 @@ export const SummaryStats = () => {
             </div>    
         </div>
 
-        <div className='p-4 grow text-center rounded-2xl backdrop-blur-sm bg-white/20'>
+        <div className='h-[88px] p-4 grow text-center rounded-2xl backdrop-blur-sm bg-white/20'>
           <div className='flex justify-center items-center'>
                 {/* <Image
                     src="/person_icon.png"

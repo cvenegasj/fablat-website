@@ -151,7 +151,7 @@ export default function Home() {
           </Link>
         </h3>
 
-        <div className='w-full flex py-8'>
+        <div className='w-full flex py-8 overflow-hidden'>
           <Link className='w-full block p-6 rounded-3xl bg-pink-200/30 text-center text-xl font-medium text-neutral-100' href="https://www.fablabs.io/labs" target='_blank'>
             Ver todos los fab labs en https://www.fablabs.io/labs
           </Link>
