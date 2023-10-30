@@ -18,48 +18,6 @@ export default function ParticipantViewOne({params}: any) {
 
     const {userData, isLoadingUser, isErrorUser} = fetchUserById(id);
 
-    // const userData: UserDtoOld = {
-    //     "idFabber": 7,
-    //     "email": "mezagg@gmail.com",
-    //     "name": "Gerardo Meza González",
-    //     "firstName": "Gerardo",
-    //     "lastName": "Meza González",
-    //     "isFabAcademyGrad": false,
-    //     "fabAcademyGradYear": null,
-    //     "cellPhoneNumber": null,
-    //     "isNomade": true,
-    //     "mainQuote": null,
-    //     "city": null,
-    //     "country": "PER",
-    //     "weekGoal": null,
-    //     "avatarUrl": "https://lh3.googleusercontent.com/a/ACg8ocIlbnk_e9fyjP7q2zv5jecswCc1nXfA7gs5pSTtsXtOLck=s96-c",
-    //     "labId": null,
-    //     "labName": null,
-    //     "generalScore": 0,
-    //     "coordinatorScore": 0,
-    //     "collaboratorScore": 0,
-    //     "replicatorScore": 0,
-    //     "authorities": [
-    //         "ROLE_ADMIN_GENERAL"
-    //     ],
-    //     "groupsJoined": [{
-    //         "id": 5,
-    //         "name": "Test G",
-    //         "imgUrl": null,
-    //         "membersCount": 3
-    //     }, {
-    //         "id": 6,
-    //         "name": "Test G",
-    //         "imgUrl": null,
-    //         "membersCount": 2
-    //     },{
-    //         "id": 7,
-    //         "name": "Test G",
-    //         "imgUrl": null,
-    //         "membersCount": 1
-    //     }]
-    // };
-
     const country = userData.country && countriesMap.has(userData.country) ? countriesMap.get(userData.country) : undefined;
 
 
@@ -111,7 +69,7 @@ export default function ParticipantViewOne({params}: any) {
                 <div className='mt-3 w-full flex flex-wrap gap-2'>
                     {
                         userData.groupsJoined.map((group: GroupDtoOld) => (
-                            <div className="w-[170px] h-[180px] rounded-xl bg-neutral-200/70 p-4 m-1 shadow-md hover:transition-all hover:-translate-y-0.5 hover:-translate-x-0.5 hover:shadow-lg">
+                            <div key={group.id} className="w-[170px] h-[180px] rounded-xl bg-neutral-200/70 p-4 m-1 shadow-md hover:transition-all hover:-translate-y-0.5 hover:-translate-x-0.5 hover:shadow-lg">
                                 <div className="h-[64px] flex justify-center">
                                     <Link href={`/group/${group.id}`}>
                                         <Avatar radius="lg" showFallback name={group.name} src={group.imgUrl!} className="w-16 h-16" fallback={<Image src="/fablat_2023_logo.png" />} />

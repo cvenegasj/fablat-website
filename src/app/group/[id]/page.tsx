@@ -13,66 +13,6 @@ export default function GroupViewOne({params}: any) {
 
     const {groupData, isLoadingGroup, isErrorGroup} = fetchGroupById(id);
 
-    // const groupData = {
-    //     "id": 5,
-    //     "name": "Test G",
-    //     "description": "ggg",
-    //     "score": 0,
-    //     "members": [
-    //         {
-    //             "idFabber": 8,
-    //             "email": null,
-    //             "name": "Carlos Venegas ",
-    //             "firstName": null,
-    //             "lastName": null,
-    //             "isFabAcademyGrad": null,
-    //             "fabAcademyGradYear": null,
-    //             "cellPhoneNumber": null,
-    //             "isNomade": null,
-    //             "mainQuote": null,
-    //             "city": null,
-    //             "country": null,
-    //             "weekGoal": null,
-    //             "avatarUrl": "https://avatars0.githubusercontent.com/u/4387876?v=4",
-    //             "labId": null,
-    //             "labName": null,
-    //             "generalScore": null,
-    //             "coordinatorScore": null,
-    //             "collaboratorScore": null,
-    //             "replicatorScore": null,
-    //             "authorities": null,
-    //             "groupsJoined": null
-    //         },
-    //         {
-    //             "idFabber": 9,
-    //             "email": null,
-    //             "name": "Beno Juarez",
-    //             "firstName": null,
-    //             "lastName": null,
-    //             "isFabAcademyGrad": null,
-    //             "fabAcademyGradYear": null,
-    //             "cellPhoneNumber": null,
-    //             "isNomade": null,
-    //             "mainQuote": null,
-    //             "city": null,
-    //             "country": null,
-    //             "weekGoal": null,
-    //             "avatarUrl": "https://lh3.googleusercontent.com/a/ACg8ocLV7VMIOf3agMkrFoght8KnUS_2luIwPDCcNXzVLaZcjsY=s96-c",
-    //             "labId": null,
-    //             "labName": null,
-    //             "generalScore": null,
-    //             "coordinatorScore": null,
-    //             "collaboratorScore": null,
-    //             "replicatorScore": null,
-    //             "authorities": null,
-    //             "groupsJoined": null
-    //         }
-    //     ],
-    //     "membersCount": 2,
-    //     "imgUrl": null
-    // };
-
-
     if (isErrorGroup) return <p>Error al cargar datos.</p>
     if (isLoadingGroup) return <Spinner />
 
@@ -102,7 +42,7 @@ export default function GroupViewOne({params}: any) {
                 <div className='mt-3 w-full flex flex-wrap gap-2'>
                     {
                         groupData.members.map((user: UserDtoOld) => (
-                            <div className="w-[150px] h-[120px] rounded-xl bg-neutral-200/70 p-4 m-1 shadow-md hover:transition-all hover:-translate-y-0.5 hover:-translate-x-0.5 hover:shadow-lg">
+                            <div key={user.idFabber} className="w-[150px] h-[120px] rounded-xl bg-neutral-200/70 p-4 m-1 shadow-md hover:transition-all hover:-translate-y-0.5 hover:-translate-x-0.5 hover:shadow-lg">
                                 <div className="h-[64px] flex justify-center">
                                     <Link href={`/participant/${user.idFabber}`}>
                                         <Avatar showFallback name={user.name} src={user.avatarUrl} className="w-15 h-15" />
