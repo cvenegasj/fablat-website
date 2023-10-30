@@ -187,9 +187,9 @@ export default function GroupsListAll() {
                         <TableHeader>
                             <TableColumn key="name" allowsSorting>NOMBRE</TableColumn>
                             <TableColumn key="score" allowsSorting>PUNTAJE DE IMPACTO</TableColumn>
-                            <TableColumn key="membersCount" allowsSorting>N. MIEMBROS</TableColumn>
-                            <TableColumn key="workshopsCount" allowsSorting>N. TALLERES</TableColumn>
-                            <TableColumn key="eventsCount" allowsSorting>N. EVENTOS</TableColumn>
+                            <TableColumn key="membersCount" allowsSorting>MIEMBROS</TableColumn>
+                            <TableColumn key="workshopsCount" allowsSorting>TALLERES</TableColumn>
+                            <TableColumn key="eventsCount" allowsSorting>EVENTOS</TableColumn>
                         </TableHeader>
 
                         <TableBody items={sortedItems}
