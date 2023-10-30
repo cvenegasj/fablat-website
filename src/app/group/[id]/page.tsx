@@ -8,7 +8,6 @@ import { Link } from "@nextui-org/link";
 import { Spinner } from "@nextui-org/spinner";
 
 
-
 export default function GroupViewOne({params}: any) {
     const {id} = params;
 
@@ -104,9 +103,9 @@ export default function GroupViewOne({params}: any) {
                     {
                         groupData.members.map((user: UserDtoOld) => (
                             <div className="w-[150px] h-[120px] rounded-xl bg-neutral-200/70 p-4 m-1 shadow-md hover:transition-all hover:-translate-y-0.5 hover:-translate-x-0.5 hover:shadow-lg">
-                                <div className="h-[64px] flex items-end justify-center">
+                                <div className="h-[64px] flex justify-center">
                                     <Link href={`/participant/${user.idFabber}`}>
-                                        <Avatar showFallback name={user.name} src={user.avatarUrl} className="w-16 h-16 text-large" />
+                                        <Avatar showFallback name={user.name} src={user.avatarUrl} className="w-15 h-15" />
                                     </Link>
                                 </div>
 
