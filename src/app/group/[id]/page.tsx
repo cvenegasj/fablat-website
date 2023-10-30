@@ -14,7 +14,7 @@ export default function GroupViewOne({params}: any) {
     const {groupData, isLoadingGroup, isErrorGroup} = fetchGroupById(id);
 
     if (isErrorGroup) return <p>Error al cargar datos.</p>
-    if (isLoadingGroup) return <Spinner />
+    if (isLoadingGroup) return <div className="w-full mt-12 text-center"><Spinner size="lg" /></div>
 
     return (
         <main className="flex flex-col min-h-screen xl:px-80 lg:px-36 px-20 py-9">

@@ -18,11 +18,11 @@ export default function ParticipantViewOne({params}: any) {
 
     const {userData, isLoadingUser, isErrorUser} = fetchUserById(id);
 
-    const country = userData.country && countriesMap.has(userData.country) ? countriesMap.get(userData.country) : undefined;
-
 
     if (isErrorUser) return <p>Error al cargar datos.</p>
-    if (isLoadingUser) return <Spinner />
+    if (isLoadingUser) return <div className="w-full mt-12 text-center"><Spinner size="lg" /></div>
+
+    const country = userData.country && countriesMap.has(userData.country) ? countriesMap.get(userData.country) : undefined;
 
     return (
         <main className="flex flex-col min-h-screen xl:px-80 lg:px-36 px-20 py-9">
