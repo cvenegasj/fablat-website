@@ -1,4 +1,3 @@
-
 'use client';
 
 import { fetchGroupsWithFilter } from "../services/group.service";
@@ -11,8 +10,10 @@ import { User } from "@nextui-org/user";
 import { Link } from "@nextui-org/link";
 import { Pagination } from "@nextui-org/pagination";
 import { Table, TableHeader, TableBody, TableRow, TableColumn, TableCell } from "@nextui-org/table";
+import { Image } from "@nextui-org/image";
+import { Spinner } from "@nextui-org/spinner";
 import { IconArrowsSort, IconSearch, IconSortAscendingLetters, IconSortDescending2, IconSortDescendingNumbers } from "@tabler/icons-react";
-import { SortDescriptor, Spinner } from "@nextui-org/react";
+import { SortDescriptor } from "@nextui-org/react";
 import { useCallback, useEffect, useMemo, useState } from "react";
 
 import { type GroupDtoOld } from "../shared/types.old";
@@ -81,7 +82,7 @@ export default function GroupsListAll() {
                 return (
                     <Link href={`/group/${group.id}`}>
                         <User
-                            avatarProps={{size: "lg", src: group.imgUrl!}}
+                            avatarProps={{size: "lg", radius: "lg", src: group.imgUrl!, showFallback: true, fallback: <Image src="/fablat_2023_logo.png" />}}
                             name={group.name}
                             classNames={{
                                 name: "text-md text-neutral-700",
