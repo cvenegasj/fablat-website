@@ -77,7 +77,7 @@ const UserCardLanding = ({user}: {user: UserDtoOld}) => (
                 user.groupsJoined.map(({id, name, imgUrl}) => {
                     return (
                         <Tooltip key={id} showArrow={true} content={<span className='text-zinc-500'>{name}</span>}>
-                            <Avatar showFallback name={name} radius="md" src={imgUrl} size="sm" />
+                            <Avatar showFallback name={name} radius="md" src={imgUrl!} size="sm" />
                         </Tooltip>
                     );
                 })

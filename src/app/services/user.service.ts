@@ -4,6 +4,7 @@ import useSWR from "swr";
 
 const fetcher = (...args: any) => fetch(args).then((res) => res.json());
 
+
 export const fetchUsers = (page: number, size: number) => {
     const {data: usersData, error: isErrorUsers, isLoading: isLoadingUsers} = useSWR(`${apiBaseUrl}/auth/fabbers?page=${page}&size=${size}`, fetcher, {
         keepPreviousData: true,
@@ -53,5 +54,15 @@ export const fetchUsersWithFilter = (page: number, size: number, filter: Map<str
         usersData,
         isLoadingUsers,
         isErrorUsers
+    };
+}
+
+export const fetchUserById = (id: string) => {
+    const {data: userData, error: isErrorUser, isLoading: isLoadingUser} = useSWR(`${apiBaseUrl}/auth/fabbers/${id}`, fetcher);
+
+    return {
+        userData,
+        isLoadingUser,
+        isErrorUser
     };
 }

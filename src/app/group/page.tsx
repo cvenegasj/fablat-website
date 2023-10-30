@@ -18,13 +18,6 @@ import { useCallback, useEffect, useMemo, useState } from "react";
 import { type GroupDtoOld } from "../shared/types.old";
 
 
-// var groupsToDisplay: GroupDto[] = [
-//     {id: '1', name: 'First Group', score: 15, membersCount: 2, imgUrl: '', workshopsCount: 10, eventsCount: 5},
-//     {id: '2', name: 'The Best Group', score: 10, membersCount: 8, imgUrl: '', workshopsCount: 0, eventsCount: 6},
-//     // {id: '', name: '', score: 15, membersCount: 2, imgUrl: '',},
-// ];
-
-
 export default function GroupsListAll() {
     const [groups, setGroups] = useState<GroupDtoOld[]>([]);
     const [currentPage, setCurrentPage] = useState<number>(0); // 0-based
@@ -40,7 +33,7 @@ export default function GroupsListAll() {
 
     useEffect(() => {
       if (groupsData) {
-        // console.log("groups fetched: ", groupsData.content);
+        console.log("groups fetched: ", groupsData.content);
         // console.log("total pages: ", groupsData.totalPages);
         setGroups(groupsData.content);
         setTotalPages(groupsData.totalPages);
@@ -51,7 +44,7 @@ export default function GroupsListAll() {
         return [...groups].sort((a, b) => {
             const first = a[sortDescriptor.column as keyof GroupDtoOld];
             const second = b[sortDescriptor.column as keyof GroupDtoOld];
-            const cmp = first < second ? -1 : first > second ? 1 : 0;
+            const cmp = first! < second! ? -1 : first! > second! ? 1 : 0;
 
             return sortDescriptor.direction === "descending" ? -cmp : cmp;
         });
@@ -88,7 +81,7 @@ export default function GroupsListAll() {
                 return (
                     <Link href={`/group/${group.id}`}>
                         <User
-                            avatarProps={{size: "lg", src: group.imgUrl}}
+                            avatarProps={{size: "lg", src: group.imgUrl!}}
                             name={group.name}
                             classNames={{
                                 name: "text-md text-neutral-700",

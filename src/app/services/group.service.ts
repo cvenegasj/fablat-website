@@ -55,3 +55,13 @@ export const fetchGroupsWithFilter = (page: number, size: number, filter: Map<st
         isErrorGroups
     };
 }
+
+export const fetchGroupById = (id: string) => {
+    const {data: groupData, error: isErrorGroup, isLoading: isLoadingGroup} = useSWR(`${apiBaseUrl}/auth/groups/one/${id}`, fetcher);
+
+    return {
+        groupData,
+        isLoadingGroup,
+        isErrorGroup
+    };
+}

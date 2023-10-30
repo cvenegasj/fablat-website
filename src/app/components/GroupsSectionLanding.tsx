@@ -54,7 +54,7 @@ const GroupCardLanding = ({group}: {group: GroupDtoOld}) => (
         <div className="w-[225px] h-[212px] rounded-lg bg-pink-200/70 p-4 m-1 shadow-md hover:transition-all hover:-translate-y-0.5 hover:-translate-x-0.5 hover:shadow-lg">
             <div className="h-[64px] flex items-end justify-center">
                 <Link href={`/group/${group.id}`}>
-                    <Avatar isBordered radius="lg" showFallback name={group.name} src={group.imgUrl} className="w-16 h-16 text-large" fallback={<Image src="/fablat_2023_logo.png" />} />
+                    <Avatar isBordered radius="lg" showFallback name={group.name} src={group.imgUrl!} className="w-16 h-16 text-large" fallback={<Image src="/fablat_2023_logo.png" />} />
                 </Link>
             </div>
 
@@ -71,9 +71,9 @@ const GroupCardLanding = ({group}: {group: GroupDtoOld}) => (
             </div>
         
             <div className="mt-5">
-                <AvatarGroup max={4} total={group.membersCount - 4}>
+                <AvatarGroup max={4} total={group.membersCount! - 4}>
                     {
-                        group.members.map((member: UserDtoOld) => {
+                        group.members!.map((member: UserDtoOld) => {
                             return (
                                 <Tooltip key={member.idFabber} showArrow={true} content={<span className='text-zinc-500'>{member.name}</span>}>
                                     <Avatar showFallback name={member.name} src={member.avatarUrl} />

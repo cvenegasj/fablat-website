@@ -8,13 +8,13 @@ export interface UserDtoOld {
     fabAcademyGradYear?: any;
     cellPhoneNumber?: any;
     isNomade: boolean;
-    mainQuote?: string;
-    city?: string;
+    mainQuote?: string | null;
+    city?: string | null;
     country?: string;
-    weekGoal?: string;
+    weekGoal?: string | null;
     avatarUrl: string;
-    labId?: string;
-    labName?: string;
+    labId?: string | null;
+    labName?: string | null;
     generalScore: number;
     coordinatorScore: number;
     collaboratorScore: number;
@@ -26,9 +26,9 @@ export interface UserDtoOld {
 export interface GroupDtoOld {
     id: number;
     name: string;
-    description: string;
-    score: number;
-    members: UserDtoOld[];
-    membersCount: number;
-    imgUrl: string;
+    description?: string;
+    score?: number;
+    members?: UserDtoOld[] | null;
+    membersCount?: number;
+    imgUrl: string | null;
 }

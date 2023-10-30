@@ -25,28 +25,6 @@ import { countries } from "../shared/constants";
 
 const countriesMap: Map<string, Country> = new Map(countries.map(e => [e.cca3, e]));
 
-// var usersToDisplay: UserDto[] = [
-//     {id: "fs", email: "email@gmail.com", country: "pe",  displayName: "Grace Schwan", avatarUrl: "https://i.pravatar.cc/150?u=a04258114e29026302d", score: 50, groupsJoined: [{id: "4asdf", name: "first", avatarUrl: "https://i.pravatar.cc/200"}, {id: "44rf", name: "second", avatarUrl: "https://i.pravatar.cc/200"}, {id: "52345f", name: "third", avatarUrl: null}], workshopsCount: 5, eventsCount: 4},
-//     {id: "fg", email: "email@gmail.com", country: "ar",  displayName: "Benito Juárez", avatarUrl: "https://i.pravatar.cc/150?u=a042581f4e29026024d", score: 43, groupsJoined: [{id: "543ff", name: "first", avatarUrl: "https://i.pravatar.cc/200"}, {id: "432", name: "second", avatarUrl: "https://i.pravatar.cc/200"}], workshopsCount: 3, eventsCount: 2},
-//     {id: "fsasdf", email: "email@gmail.com", country: "pe",  displayName: "Carlos Venegas", avatarUrl: "https://i.pravatar.cc/150?u=a04258a2462d826712d", score: 40, groupsJoined: [{id: "fsdf44", name: "third", avatarUrl: "https://i.pravatar.cc/200"}], workshopsCount: 1, eventsCount: 0},
-//     {id: "fsasef", email: "email@gmail.com", country: "pe",  displayName: "Miguel Cervantes", avatarUrl: "https://i.pravatar.cc/150?u=a042581f4e29026704d", score: 26, groupsJoined: [{id: "5544g", name: "first", avatarUrl: null}, {id: "7675g", name: "second", avatarUrl: "https://i.pravatar.cc/200"}, {id: "98898f", name: "third", avatarUrl: "https://i.pravatar.cc/200"}], workshopsCount: 1, eventsCount: 0},
-//     {id: "ffff5", email: "email@gmail.com", country: "pe",  displayName: "Albert Einstein", avatarUrl: "https://i.pravatar.cc/150?u=a04258114e29026302d", score: 22, groupsJoined: [], workshopsCount: 3, eventsCount: 0},
-//     {id: "fs0", email: "email@gmail.com", country: "pe",  displayName: "Charles Darwin", avatarUrl: "https://i.pravatar.cc/150?u=a04258114e29026302d", score: 22, groupsJoined: [{id: "4asdf", name: "first", avatarUrl: "https://i.pravatar.cc/200"}, {id: "44rf", name: "second", avatarUrl: null}, {id: "52345f", name: "third", avatarUrl: "https://i.pravatar.cc/200"}], workshopsCount: 3, eventsCount: 4},
-//     {id: "fg6", email: "email@gmail.com", country: "br",  displayName: "Otro Nombre", avatarUrl: "https://i.pravatar.cc/150?u=a042581f4e29026024d", score: 15, groupsJoined: [{id: "543ff", name: "first", avatarUrl: "https://i.pravatar.cc/200"}, {id: "432", name: "second", avatarUrl: "https://i.pravatar.cc/200"}], workshopsCount: 3, eventsCount: 4},
-//     {id: "fsasdf465", email: "email@gmail.com", country: "br",  displayName: "Foo Bar", avatarUrl: "https://i.pravatar.cc/150?u=a04258a2462d826712d", score: 14, groupsJoined: [{id: "fsdf44", name: "third", avatarUrl: "https://i.pravatar.cc/200"}], workshopsCount: 3, eventsCount: 4},
-//     {id: "fsase4555", email: "email@gmail.com", country: "pe",  displayName: "Milagros Saavedra", avatarUrl: "https://i.pravatar.cc/150?u=a042581f4e29026704d", score: 14, groupsJoined: [{id: "5544g", name: "first", avatarUrl: "https://i.pravatar.cc/200"}, {id: "7675g", name: "second", avatarUrl: null}, {id: "98898f", name: "third", avatarUrl: "https://i.pravatar.cc/200"}], workshopsCount: 3, eventsCount: 4},
-//     {id: "ffgf", email: "email@gmail.com", country: "pe",  displayName: "Ricardo Gonzales", avatarUrl: "https://i.pravatar.cc/150?u=a04258114e29026302d", score: 13, groupsJoined: [], workshopsCount: 3, eventsCount: 4},
-//     {id: "fs89", email: "email@gmail.com", country: "br",  displayName: "Christian Castillo", avatarUrl: "https://i.pravatar.cc/150?u=a04258114e29026302d", score: 10, groupsJoined: [{id: "4asdf", name: "first", avatarUrl: null}, {id: "44rf", name: "second", avatarUrl: null}, {id: "52345f", name: "third", avatarUrl: "https://i.pravatar.cc/200"}], workshopsCount: 3, eventsCount: 4},
-//     {id: "fg354g", email: "email@gmail.com", country: "ar",  displayName: "Alexander Castro", avatarUrl: "https://i.pravatar.cc/150?u=a042581f4e29026024d", score: 9, groupsJoined: [{id: "543ff", name: "first", avatarUrl: "https://i.pravatar.cc/200"}, {id: "432", name: "second", avatarUrl: "https://i.pravatar.cc/200"}], workshopsCount: 3, eventsCount: 4},
-//     {id: "fsasdf2", email: "email@gmail.com",  country: "pe", displayName: "Santiago Aranda", avatarUrl: "https://i.pravatar.cc/150?u=a04258a2462d826712d", score: 8, groupsJoined: [{id: "fsdf44", name: "third", avatarUrl: "https://i.pravatar.cc/200"}], workshopsCount: 3, eventsCount: 4},
-//     {id: "fsase77", email: "email@gmail.com", country: "pe",  displayName: "Carlos Gonzales", avatarUrl: "https://i.pravatar.cc/150?u=a042581f4e29026704d", score: 8, groupsJoined: [{id: "5544g", name: "first", avatarUrl: "https://i.pravatar.cc/200"}, {id: "7675g", name: "second", avatarUrl: "https://i.pravatar.cc/200"}, {id: "98898f", name: "third", avatarUrl: "https://i.pravatar.cc/200"}], workshopsCount: 3, eventsCount: 4},
-//     {id: "fs89", email: "email@gmail.com", country: "br",  displayName: "Christian Castillo", avatarUrl: "https://i.pravatar.cc/150?u=a04258114e29026302d", score: 10, groupsJoined: [{id: "4asdf", name: "first", avatarUrl: null}, {id: "44rf", name: "second", avatarUrl: null}, {id: "52345f", name: "third", avatarUrl: "https://i.pravatar.cc/200"}], workshopsCount: 3, eventsCount: 4},
-//     {id: "fg354g", email: "email@gmail.com", country: "ar",  displayName: "Alexander Castro", avatarUrl: "https://i.pravatar.cc/150?u=a042581f4e29026024d", score: 9, groupsJoined: [{id: "543ff", name: "first", avatarUrl: "https://i.pravatar.cc/200"}, {id: "432", name: "second", avatarUrl: "https://i.pravatar.cc/200"}], workshopsCount: 3, eventsCount: 4},
-//     {id: "fsasdf2", email: "email@gmail.com",  country: "pe", displayName: "Santiago Aranda", avatarUrl: "https://i.pravatar.cc/150?u=a04258a2462d826712d", score: 8, groupsJoined: [{id: "fsdf44", name: "third", avatarUrl: "https://i.pravatar.cc/200"}], workshopsCount: 3, eventsCount: 4},
-//     {id: "fsase77", email: "email@gmail.com", country: "pe",  displayName: "Carlos Gonzales", avatarUrl: "https://i.pravatar.cc/150?u=a042581f4e29026704d", score: 8, groupsJoined: [{id: "5544g", name: "first", avatarUrl: "https://i.pravatar.cc/200"}, {id: "7675g", name: "second", avatarUrl: "https://i.pravatar.cc/200"}, {id: "98898f", name: "third", avatarUrl: "https://i.pravatar.cc/200"}], workshopsCount: 3, eventsCount: 4},
-//     {id: "ffbbf", email: "email@gmail.com", country: "br",  displayName: "Carlos Venegas Jara", avatarUrl: "https://i.pravatar.cc/150?u=a04258114e29026302d", score: 4, groupsJoined: [], workshopsCount: 3, eventsCount: 4},
-// ];
-
 
 export default function ParticipantsListAll() {
     const [users, setUsers] = useState<UserDtoOld[]>([]);
@@ -157,7 +135,7 @@ export default function ParticipantsListAll() {
                             return (
                                 <Tooltip key={group.id} showArrow={true} content={<span className='text-zinc-500'>{group.name}</span>}>
                                     <Link href={`/group/${group.id}`}>
-                                        <Avatar src={group.imgUrl} radius="lg" showFallback fallback={<Image src="/fablat_2023_logo.png" />} />
+                                        <Avatar src={group.imgUrl!} radius="lg" showFallback fallback={<Image src="/fablat_2023_logo.png" />} />
                                     </Link>
                                 </Tooltip>
                             );

@@ -71,6 +71,7 @@ export default function Home() {
       </div>
 
       <SummaryStats />
+      
 
       {/* Section: Personas */}
       <div className='flex flex-col w-full max-w-8xl my-12'>
@@ -101,7 +102,6 @@ export default function Home() {
 
 
 
-
       {/* Section: Grupos */}
       <div className='flex flex-col w-full max-w-8xl my-12'>
         <h3 className='flex items-center justify-between'>
@@ -128,8 +128,6 @@ export default function Home() {
 
         <GroupsSectionLanding />
       </div>
-
-
 
 
       {/* Section: Labs */}
