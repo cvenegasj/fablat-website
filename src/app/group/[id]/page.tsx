@@ -45,7 +45,7 @@ export default function GroupViewOne({params}: any) {
                             <div key={user.idFabber} className="w-[150px] h-[120px] rounded-xl bg-neutral-200/70 p-4 m-1 shadow-md hover:transition-all hover:-translate-y-0.5 hover:-translate-x-0.5 hover:shadow-lg">
                                 <div className="h-[64px] flex justify-center">
                                     <Link href={`/participant/${user.idFabber}`}>
-                                        <Avatar showFallback name={user.name} src={user.avatarUrl} className="w-15 h-15" />
+                                        <Avatar showFallback name={user.name} src={user.avatarUrl} size="lg" />
                                     </Link>
                                 </div>
 

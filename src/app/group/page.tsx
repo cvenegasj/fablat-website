@@ -34,7 +34,7 @@ export default function GroupsListAll() {
 
     useEffect(() => {
       if (groupsData) {
-        console.log("groups fetched: ", groupsData.content);
+        // console.log("groups fetched: ", groupsData.content);
         // console.log("total pages: ", groupsData.totalPages);
         setGroups(groupsData.content);
         setTotalPages(groupsData.totalPages);

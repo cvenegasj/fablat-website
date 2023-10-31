@@ -41,8 +41,8 @@ export default function ParticipantsListAll() {
 
     useEffect(() => {
       if (usersData) {
-        console.log("users fetched: ", usersData.content);
-        console.log("total pages: ", usersData.totalPages);
+        // console.log("users fetched: ", usersData.content);
+        // console.log("total pages: ", usersData.totalPages);
         setUsers(usersData.content);
         setTotalPages(usersData.totalPages);
       }
