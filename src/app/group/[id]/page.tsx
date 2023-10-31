@@ -5,6 +5,7 @@ import { UserDtoOld } from "@/app/shared/types.old";
 
 import { Avatar } from "@nextui-org/avatar";
 import { Link } from "@nextui-org/link";
+import { Image } from "@nextui-org/image";
 import { Spinner } from "@nextui-org/spinner";
 
 
@@ -21,7 +22,7 @@ export default function GroupViewOne({params}: any) {
 
             <div className="w-full max-w-8xl mt-8">
                 {/* <Badge content={55} size="lg" color="success" placement="bottom-right" shape="rectangle" variant="shadow" disableOutline> */}
-                <Avatar className='w-24 h-24' showFallback name={groupData.name} src={groupData.imgUrl!} radius="sm" />
+                <Avatar className='w-24 h-24' showFallback name={groupData.name} src={groupData.imgUrl!} radius="lg" fallback={<Image src="/fablat_logo.svg" />} />
                 {/* </Badge> */}
 
                 <div className='mt-4 w-full'>

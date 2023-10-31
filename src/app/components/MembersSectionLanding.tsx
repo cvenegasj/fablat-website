@@ -9,6 +9,7 @@ import { Pagination, PaginationItemRenderProps, PaginationItemType } from '@next
 import { Tooltip } from '@nextui-org/tooltip';
 import { Spinner } from '@nextui-org/spinner';
 import { Link } from '@nextui-org/link';
+import { Image } from '@nextui-org/image';
 import { cn } from '@nextui-org/react';
 
 import { useEffect, useState } from 'react';
@@ -77,7 +78,7 @@ const UserCardLanding = ({user}: {user: UserDtoOld}) => (
                 user.groupsJoined.map(({id, name, imgUrl}) => {
                     return (
                         <Tooltip key={id} showArrow={true} content={<span className='text-zinc-500'>{name}</span>}>
-                            <Avatar showFallback name={name} radius="md" src={imgUrl!} size="sm" />
+                            <Avatar showFallback name={name} radius="sm" size="sm" src={imgUrl!} fallback={<Image src="/fablat_logo.svg" />} />
                         </Tooltip>
                     );
                 })

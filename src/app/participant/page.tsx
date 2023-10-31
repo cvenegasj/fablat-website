@@ -129,13 +129,13 @@ export default function ParticipantsListAll() {
                 }
             case "groupsJoined":
                 return (
-                    <AvatarGroup isBordered isGrid max={7}>
+                    <AvatarGroup isGrid max={7}>
                         {
                         user.groupsJoined.map(group => {
                             return (
                                 <Tooltip key={group.id} showArrow={true} content={<span className='text-zinc-500'>{group.name}</span>}>
                                     <Link href={`/group/${group.id}`}>
-                                        <Avatar src={group.imgUrl!} radius="lg" showFallback fallback={<Image src="/fablat_2023_logo.png" />} />
+                                        <Avatar src={group.imgUrl!} radius="md" showFallback fallback={<Image src="/fablat_logo.svg" />} />
                                     </Link>
                                 </Tooltip>
                             );

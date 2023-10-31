@@ -82,7 +82,7 @@ export default function GroupsListAll() {
                 return (
                     <Link href={`/group/${group.id}`}>
                         <User
-                            avatarProps={{size: "lg", radius: "lg", src: group.imgUrl!, showFallback: true, fallback: <Image src="/fablat_2023_logo.png" />}}
+                            avatarProps={{size: "lg", radius: "lg", src: group.imgUrl!, showFallback: true, fallback: <Image src="/fablat_logo.svg" />}}
                             name={group.name}
                             classNames={{
                                 name: "text-md text-neutral-700",
