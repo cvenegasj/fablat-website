@@ -34,8 +34,8 @@ export default function RootLayout({children}: { children: React.ReactNode }) {
                   className="invert"
                   src="/fablat_logo.svg"
                   alt="Fab Lat Logo"
-                  width={40}
-                  height={40}
+                  width={47}
+                  height={47}
                 />
                 {/* <p className="font-bold text-inherit">FAB LAT</p> */}
               </Link>
