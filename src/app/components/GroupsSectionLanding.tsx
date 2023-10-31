@@ -51,8 +51,8 @@ export default function GroupsSectionLanding() {
 }
 
 const GroupCardLanding = ({group}: {group: GroupDtoOld}) => (
-        <div className="w-[236px] h-[208px] rounded-lg bg-pink-200/70 p-3 m-1 shadow-md hover:transition-all hover:-translate-y-0.5 hover:-translate-x-0.5 hover:shadow-lg">
-            <div className="mt-1 flex justify-center">
+        <div className="w-[236px] h-[192px] rounded-lg bg-pink-200/70 p-3 m-1 shadow-md hover:transition-all hover:-translate-y-0.5 hover:-translate-x-0.5 hover:shadow-lg">
+            <div className="flex justify-center">
                 <Link href={`/group/${group.id}`}>
                     <Avatar radius="lg" showFallback name={group.name} src={group.imgUrl!} className="w-16 h-16 text-large" fallback={<Image src="/fablat_2023_logo.png" />} />
                 </Link>
@@ -70,7 +70,7 @@ const GroupCardLanding = ({group}: {group: GroupDtoOld}) => (
                 <span className="text-sm text-gray-500"> · {group.membersCount} {group.membersCount == 1 ? 'miembro' : 'miembros'}</span>
             </div>
         
-            <div className="mt-4">
+            <div className="mt-3">
                 <AvatarGroup max={4} total={group.membersCount! - 4}>
                     {
                         group.members!.map((member: UserDtoOld) => {

@@ -22,9 +22,8 @@ export default function Home() {
             rel="noopener noreferrer"
           >
             <Image
-              src="/fablat_2023_logo.png"
+              src="/fablat_logo.svg"
               alt="FabLat Logo"
-              // className="dark:invert"
               width={140}
               height={140}
               priority
