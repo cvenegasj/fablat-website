@@ -29,7 +29,7 @@ export default function ParticipantViewOne({params}: any) {
 
             <div className="w-full max-w-8xl mt-8">
                 {/* <Badge content={55} size="lg" color="success" placement="bottom-right" shape="rectangle" variant="shadow" disableOutline> */}
-                <Avatar className='w-20 h-20' showFallback name={userData.name} src={userData.avatarUrl} />
+                <Avatar className='w-24 h-24' showFallback name={userData.name} src={userData.avatarUrl} />
                 {/* </Badge> */}
 
                 <div className='mt-4 w-full'>
@@ -53,6 +53,7 @@ export default function ParticipantViewOne({params}: any) {
                     <div className="text-md text-neutral-500">País</div>
                     <div className="flex ml-5">
                         <Avatar alt={country.name.common} size="sm" src={country.flags.svg} showFallback name={country.name.common} />
+
                         <div className="ml-2 flex items-center">
                             {country.name.common}
                         </div>
