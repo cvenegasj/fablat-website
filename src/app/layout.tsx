@@ -32,8 +32,8 @@ export default function RootLayout({children}: { children: React.ReactNode }) {
               <Link href="/">
                 <Image
                   className="invert"
-                  src="/fablat_2023_logo.png"
-                  alt="FabLat Logo"
+                  src="/fablat_logo.svg"
+                  alt="Fab Lat Logo"
                   width={40}
                   height={40}
                 />
