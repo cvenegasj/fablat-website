@@ -1,6 +1,6 @@
 'use client';
 
-import { fetchGroups, fetchGroupsCount, fetchGroupsWithFilter } from "../services/group.service";
+import { fetchGroupsWithFilter } from "../services/group.service";
 
 import { Avatar, AvatarGroup } from "@nextui-org/avatar";
 import { Image } from "@nextui-org/image";
@@ -19,7 +19,7 @@ export default function GroupsSectionLanding() {
     const [currentPage, setCurrentPage] = useState<number>(0);
     const [totalPages, setTotalPages] = useState<number>(1);
 
-    const pageSize = 18;
+    const pageSize = 15;
     const {groupsData, isLoadingGroups, isErrorGroups} = fetchGroupsWithFilter(currentPage, pageSize, new Map());
 
     useEffect(() => {
