@@ -189,7 +189,7 @@ export default function GroupsListAll() {
                             <TableColumn key="score" allowsSorting>PUNTAJE DE IMPACTO</TableColumn>
                             <TableColumn key="membersCount" allowsSorting>MIEMBROS</TableColumn>
                             <TableColumn key="workshopsCount" allowsSorting>TALLERES</TableColumn>
-                            <TableColumn key="eventsCount" allowsSorting>EVENTOS</TableColumn>
+                            <TableColumn key="eventsCount" allowsSorting>OTROS EVENTOS</TableColumn>
                         </TableHeader>
 
                         <TableBody items={sortedItems}

@@ -269,11 +269,11 @@ export default function ParticipantsListAll() {
 
                         <TableHeader>
                             <TableColumn key="name" allowsSorting>NOMBRE</TableColumn>
-                            <TableColumn key="score" allowsSorting>PUNTAJE DE IMPACTO</TableColumn>
+                            <TableColumn key="generalScore" allowsSorting>PUNTAJE DE IMPACTO</TableColumn>
                             <TableColumn key="country">PAÍS</TableColumn>
                             <TableColumn key="groupsJoined" className="min-w-[250px]">GRUPOS</TableColumn>
                             <TableColumn key="workshopsCount" allowsSorting>TALLERES</TableColumn>
-                            <TableColumn key="eventsCount" allowsSorting>EVENTOS</TableColumn>
+                            <TableColumn key="eventsCount" allowsSorting>OTROS EVENTOS</TableColumn>
                         </TableHeader>
 
                         <TableBody items={sortedItems} 

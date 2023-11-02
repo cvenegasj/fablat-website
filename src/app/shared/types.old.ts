@@ -4,8 +4,8 @@ export interface UserDtoOld {
     name: string;
     firstName: string;
     lastName: string;
-    isFabAcademyGrad: boolean;
-    fabAcademyGradYear?: any;
+    isFabAcademyGrad: boolean | null;
+    fabAcademyGradYear: string | null;
     cellPhoneNumber?: any;
     isNomade: boolean;
     mainQuote?: string | null;
@@ -21,14 +21,18 @@ export interface UserDtoOld {
     replicatorScore: number;
     authorities: string[];
     groupsJoined: GroupDtoOld[];
+    workshopsCount: number | null;
+    eventsCount: number | null;
 }
 
 export interface GroupDtoOld {
     id: number;
     name: string;
     description?: string;
-    score?: number;
-    members?: UserDtoOld[] | null;
-    membersCount?: number;
+    score: number | null;
+    members: UserDtoOld[] | null;
+    membersCount: number;
     imgUrl: string | null;
+    workshopsCount: number | null;
+    eventsCount: number | null;
 }

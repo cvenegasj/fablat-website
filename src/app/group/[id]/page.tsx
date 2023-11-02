@@ -35,9 +35,15 @@ export default function GroupViewOne({params}: any) {
                 </div>
             </div>
 
+            <div className="w-full max-w-8xl mt-8">
+                <span className="text-md text-neutral-500">Puntaje:</span>
+                <span className="text-md ml-3">{groupData.score}</span>
+            </div>
+
             <div className="w-full max-w-8xl mt-20">
-                <div className="text-md text-neutral-500">
-                    Miembros
+                <div className="text-md">
+                    <span className="text-neutral-500">Miembros</span>
+                    <span className="text-neutral-400 ml-2">({groupData.membersCount})</span>
                 </div>
 
                 <div className='mt-3 w-full flex flex-wrap gap-2'>

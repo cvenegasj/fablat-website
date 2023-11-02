@@ -8,7 +8,8 @@ import { Country } from "@/app/shared/countries.types";
 import { countries } from "@/app/shared/constants";
 import { Link } from "@nextui-org/link";
 import { Image } from "@nextui-org/image";
-import { GroupDtoOld } from "@/app/shared/types.old";
+import { Badge } from "@nextui-org/badge";
+import { type GroupDtoOld } from "@/app/shared/types.old";
 
 
 const countriesMap: Map<string, Country> = new Map(countries.map(e => [e.cca3, e]));
@@ -28,9 +29,9 @@ export default function ParticipantViewOne({params}: any) {
         <main className="flex flex-col min-h-screen xl:px-80 lg:px-36 px-20 py-9">
 
             <div className="w-full max-w-8xl mt-8">
-                {/* <Badge content={55} size="lg" color="success" placement="bottom-right" shape="rectangle" variant="shadow" disableOutline> */}
-                <Avatar className='w-24 h-24' showFallback name={userData.name} src={userData.avatarUrl} />
-                {/* </Badge> */}
+                <Badge content={userData.generalScore} size="lg" color="success" placement="bottom-right" shape="rectangle" variant="shadow" disableOutline>
+                    <Avatar className='w-24 h-24' showFallback name={userData.name} src={userData.avatarUrl} />
+                </Badge>
 
                 <div className='mt-4 w-full'>
                     <div className="text-lg text-neutral-700">
@@ -42,15 +43,15 @@ export default function ParticipantViewOne({params}: any) {
                 </div>
             </div>
 
-            {/* <div className="w-full max-w-8xl mt-8">
-                <span className="text-md text-neutral-500">Puntaje de impacto</span>
+            <div className="w-full max-w-8xl mt-8">
+                <span className="text-md text-neutral-500">Puntaje de impacto:</span>
                 <span className="text-md ml-3">{userData.generalScore}</span>
-            </div> */}
+            </div>
 
             {
                 country ?
-                <div className="w-full flex max-w-8xl mt-9">
-                    <div className="text-md text-neutral-500">País</div>
+                <div className="w-full flex max-w-8xl mt-3">
+                    <div className="text-md text-neutral-500">País:</div>
                     <div className="flex ml-5">
                         <Avatar alt={country.name.common} size="sm" src={country.flags.svg} showFallback name={country.name.common} />
 
@@ -61,10 +62,18 @@ export default function ParticipantViewOne({params}: any) {
                 </div> : ''
             }
 
+            {
+                userData.isFabAcademyGrad ?
+                <div className="w-full max-w-8xl mt-3">
+                    <span className="text-md text-neutral-500">Graduado de Fab Academy, {userData.fabAcademyGradYear}</span>
+                </div> : ''
+            }
+
             
             <div className="w-full max-w-8xl mt-20">
-                <div className="text-md text-neutral-500">
-                    Grupos
+                <div className="text-md">
+                    <span className="text-neutral-500">Grupos</span>
+                    <span className="text-neutral-400 ml-2">({userData.groupsJoined.length})</span>
                 </div>
 
                 <div className='mt-3 w-full flex flex-wrap gap-2'>
