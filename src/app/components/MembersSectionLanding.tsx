@@ -3,7 +3,7 @@
 import { fetchUsersWithFilter } from '../services/user.service';
 
 import { Avatar, AvatarGroup } from '@nextui-org/avatar';
-// import { Badge } from '@nextui-org/badge';
+import { Badge } from '@nextui-org/badge';
 import { Divider } from '@nextui-org/divider';
 import { Pagination, PaginationItemRenderProps, PaginationItemType } from '@nextui-org/pagination';
 import { Tooltip } from '@nextui-org/tooltip';
@@ -56,10 +56,9 @@ const UserCardLanding = ({user}: {user: UserDtoOld}) => (
     <div className='flex flex-col w-[180px] h-[131px] rounded-lg bg-pink-200/50 p-2 shadow-md transition hover:duration-10 hover:-translate-y-[1px] hover:-translate-x-[1px] hover:shadow-lg'>        
         <div className='w-full flex'>
             <div className='w-[65px] h-[65px] flex-shrink-0 text-right'>
-                {/* <Badge content={score} size="lg" color="success" placement="bottom-left" shape="rectangle" variant="shadow">
+                <Badge content={user.generalScore} size="lg" color="success" placement="bottom-left" shape="rectangle" variant="shadow">
                     <Avatar className='ml-auto mr-0' showFallback name={user.name} src={user.avatarUrl} size="lg" />
-                </Badge> */}
-                <Avatar className='ml-auto mr-0' showFallback name={user.name} src={user.avatarUrl} size="lg" />
+                </Badge>
             </div>
 
             <div className='w-full flex ml-2 items-center'>
