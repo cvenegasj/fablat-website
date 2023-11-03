@@ -258,7 +258,7 @@ export default function ParticipantsListAll() {
                                 color="secondary"
                                 page={currentPage + 1}
                                 total={totalPages}
-                                onChange={(page) => setCurrentPage(page)}
+                                onChange={(page) => setCurrentPage(page - 1)}
                               />
                             </div>
                           }
