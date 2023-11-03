@@ -44,7 +44,7 @@ export default function GroupsSectionLanding() {
         </div>
 
         <div className="flex justify-center">
-            <Pagination showControls total={totalPages} initialPage={currentPage + 1} renderItem={renderPaginationItem} color="default" onChange={(page) => setCurrentPage(page)} />
+            <Pagination showControls total={totalPages} initialPage={currentPage + 1} renderItem={renderPaginationItem} color="default" onChange={(page) => setCurrentPage(page - 1)} />
         </div>
         </>
     );
