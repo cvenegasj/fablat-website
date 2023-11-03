@@ -49,16 +49,16 @@ export default function GroupViewOne({params}: any) {
                 <div className='mt-3 w-full flex flex-wrap gap-2'>
                     {
                         groupData.members.map((user: UserDtoOld) => (
-                            <div key={user.idFabber} className="w-[150px] h-[120px] rounded-xl bg-neutral-200/70 p-4 m-1 shadow-md hover:transition-all hover:-translate-y-0.5 hover:-translate-x-0.5 hover:shadow-lg">
+                            <div key={user.idFabber} className="w-[150px] h-[126px] rounded-xl bg-neutral-200/70 p-2 m-1 shadow-md hover:transition-all hover:-translate-y-0.5 hover:-translate-x-0.5 hover:shadow-lg">
                                 <div className="h-[64px] flex justify-center">
                                     <Link href={`/participant/${user.idFabber}`}>
                                         <Avatar showFallback name={user.name} src={user.avatarUrl} size="lg" />
                                     </Link>
                                 </div>
 
-                                <div className="text-center truncate mt-2">
+                                <div className="text-center">
                                     <Link className="font-normal text-md text-gray-500 hover:text-gray-600" href={`/participant/${user.idFabber}`}>
-                                        {user.name}
+                                        <p className="line-clamp-2">{user.name}</p>
                                     </Link>
                                 </div>
                             </div>

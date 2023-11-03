@@ -56,15 +56,17 @@ const UserCardLanding = ({user}: {user: UserDtoOld}) => (
     <div className='flex flex-col w-[180px] h-[131px] rounded-lg bg-pink-200/50 p-2 shadow-md transition hover:duration-10 hover:-translate-y-[1px] hover:-translate-x-[1px] hover:shadow-lg'>        
         <div className='w-full flex'>
             <div className='w-[65px] h-[65px] flex-shrink-0 text-right'>
+              <Link href={`/participant/${user.idFabber}`}>
                 <Badge content={user.generalScore} size="lg" color="success" placement="bottom-left" shape="rectangle" variant="shadow">
                     <Avatar className='ml-auto mr-0' showFallback name={user.name} src={user.avatarUrl} size="lg" />
                 </Badge>
+              </Link>
             </div>
 
             <div className='w-full flex ml-2 items-center'>
-                <div className='w-full line-clamp-2'>
+                <div className='w-full'>
                     <Link className="font-normal text-md leading-5 text-neutral-200 hover:text-neutral-300" href={`/participant/${user.idFabber}`}>
-                        {user.name}
+                        <p className='line-clamp-3'>{user.name}</p>
                     </Link>
                 </div>
             </div>

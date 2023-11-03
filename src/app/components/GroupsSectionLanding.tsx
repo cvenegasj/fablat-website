@@ -58,9 +58,9 @@ const GroupCardLanding = ({group}: {group: GroupDtoOld}) => (
                 </Link>
             </div>
 
-            <div className="text-center truncate mt-2">
+            <div className="text-center mt-2">
                 <Link className="font-normal text-md text-gray-600 hover:text-gray-500" href={`/group/${group.id}`}>
-                    {group.name}
+                    <p className="line-clamp-1">{group.name}</p>
                 </Link>
             </div>
 
