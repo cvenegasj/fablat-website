@@ -66,7 +66,7 @@ const GroupCardLanding = ({group}: {group: GroupDtoOld}) => (
 
             <div className="text-center">
                 <span className="text-sm text-gray-500">Impacto:  </span>
-                <span className="text-sm font-medium text-emerald-500">Muy alto</span>
+                <span className="text-sm font-medium text-emerald-600">{group.score}</span>
                 <span className="text-sm text-gray-500"> · {group.membersCount} {group.membersCount == 1 ? 'miembro' : 'miembros'}</span>
             </div>
         

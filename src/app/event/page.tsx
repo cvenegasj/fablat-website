@@ -189,8 +189,8 @@ export default function WorkshopsListAll() {
 
                         <TableHeader>
                             <TableColumn key="name" allowsSorting>NOMBRE</TableColumn>
-                            <TableColumn key="tutors" allowsSorting>TUTORES</TableColumn>
-                            <TableColumn key="location" allowsSorting>LUGAR</TableColumn>
+                            <TableColumn key="tutors">TUTORES</TableColumn>
+                            <TableColumn key="location">LUGAR</TableColumn>
                         </TableHeader>
 
                         <TableBody items={sortedItems}

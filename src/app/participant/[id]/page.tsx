@@ -24,6 +24,7 @@ export default function ParticipantViewOne({params}: any) {
     if (isLoadingUser) return <div className="w-full mt-12 text-center"><Spinner size="lg" /></div>
 
     const country = userData.country && countriesMap.has(userData.country) ? countriesMap.get(userData.country) : undefined;
+    console.log(userData);
 
     return (
         <main className="flex flex-col min-h-screen xl:px-80 lg:px-36 px-20 py-9">
@@ -79,7 +80,7 @@ export default function ParticipantViewOne({params}: any) {
                 <div className='mt-3 w-full flex flex-wrap gap-2'>
                     {
                         userData.groupsJoined.map((group: GroupDtoOld) => (
-                            <div key={group.id} className="w-[170px] h-[180px] rounded-xl bg-neutral-200/70 p-4 m-1 shadow-md hover:transition-all hover:-translate-y-0.5 hover:-translate-x-0.5 hover:shadow-lg">
+                            <div key={group.id} className="w-[170px] h-[135px] rounded-xl bg-neutral-200/70 p-2 m-1 shadow-md hover:transition-all hover:-translate-y-0.5 hover:-translate-x-0.5 hover:shadow-lg">
                                 <div className="h-[64px] flex justify-center">
                                     <Link href={`/group/${group.id}`}>
                                         <Avatar radius="lg" showFallback name={group.name} src={group.imgUrl!} className="w-16 h-16" fallback={<Image src="/fablat_2023_logo.png" />} />
@@ -94,8 +95,8 @@ export default function ParticipantViewOne({params}: any) {
 
                                 <div className="text-center">
                                     <span className="text-sm text-gray-400">Impacto:  </span>
-                                    <span className="text-sm font-medium text-emerald-500">Muy alto</span>
-                                    <span className="text-sm text-gray-400">{group.membersCount} {group.membersCount == 1 ? 'miembro' : 'miembros'}</span>
+                                    <span className="text-sm font-medium text-emerald-600">{group.score}</span> 
+                                    <span className="text-sm text-gray-400"> · {group.membersCount} {group.membersCount == 1 ? 'miembro' : 'miembros'}</span>
                                 </div>
                             </div>
                         ))
