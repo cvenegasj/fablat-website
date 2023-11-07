@@ -8,7 +8,9 @@ import { Link } from "@nextui-org/link";
 import { Pagination } from "@nextui-org/pagination";
 import { Table, TableHeader, TableBody, TableRow, TableColumn, TableCell } from "@nextui-org/table";
 import { Spinner } from "@nextui-org/spinner";
-import { IconArrowsSort, IconBrandGoogleMaps, IconSearch, IconSortAscendingLetters, IconSortDescending2, IconSortDescendingNumbers } from "@tabler/icons-react";
+import { Avatar, AvatarGroup } from "@nextui-org/avatar";
+import { Tooltip } from "@nextui-org/tooltip";
+import { IconBrandGoogleMaps, IconSearch } from "@tabler/icons-react";
 import { SortDescriptor } from "@nextui-org/react";
 import { useCallback, useEffect, useMemo, useState } from "react";
 
@@ -116,7 +118,21 @@ export default function WorkshopsListAll() {
                     </div>
                 );
             case "tutors":
-                return '';
+                return (
+                    <AvatarGroup isGrid max={7}>
+                        {
+                        workshop.tutors.map(tutor => {
+                            return (
+                                <Tooltip key={tutor.idWorkshopTutor} showArrow={true} content={<span className='text-zinc-500'>{tutor.name}</span>}>
+                                    <Link href={`/participant/${tutor.fabberId}`}>
+                                        <Avatar src={tutor.fabberAvatarUrl} radius="full" showFallback name={tutor.name} />
+                                    </Link>
+                                </Tooltip>
+                            );
+                        })
+                        }
+                    </AvatarGroup>
+                );
             default:
                 return workshop[columnKey as keyof WorkshopDtoOld];
         }

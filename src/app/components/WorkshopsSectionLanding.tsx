@@ -8,7 +8,7 @@ import { Pagination, PaginationItemRenderProps, PaginationItemType } from "@next
 import { cn } from "@nextui-org/react";
 
 import { useEffect, useState } from "react";
-import { WorkshopDtoOld, UserDtoOld } from "../shared/types.old";
+import { WorkshopDtoOld } from "../shared/types.old";
 
 
 export default function WorkshopsSectionLanding() {

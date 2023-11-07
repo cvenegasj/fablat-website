@@ -53,6 +53,11 @@ export default function RootLayout({children}: { children: React.ReactNode }) {
                 </Link>
               </NavbarItem>
               <NavbarItem>
+                <Link className='text-neutral-600 uppercase font-normal' href="/event/">
+                  Eventos
+                </Link>
+              </NavbarItem>
+              <NavbarItem>
                 <Link className='text-neutral-600 uppercase font-normal' href="https://www.fablabs.io/labs" target='_blank'>
                   Labs
                 </Link>

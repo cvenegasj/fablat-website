@@ -18,7 +18,7 @@ export const fetchWorkshopsWithFilter = (page: number, size: number, past: boole
             }
         });
     }
-    // console.log("filterParams: %s", filterParams);
+    // console.log(`${apiBaseUrl}/auth/workshops/filter?page=${page}&size=${size}&past=${past}${filterParams}`);
     
     const {data: workshopsData, error: isErrorWorkshops, isLoading: isLoadingWorkshops} = useSWR(`${apiBaseUrl}/auth/workshops/filter?page=${page}&size=${size}&past=${past}${filterParams}`, fetcher);
 
