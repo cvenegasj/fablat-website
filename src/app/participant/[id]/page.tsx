@@ -95,9 +95,6 @@ export default function ParticipantViewOne({params}: any) {
                                 <div className="text-center">
                                     <span className="text-sm text-gray-400">Impacto:  </span>
                                     <span className="text-sm font-medium text-emerald-500">Muy alto</span>
-                                </div>
-
-                                <div className="text-center">
                                     <span className="text-sm text-gray-400">{group.membersCount} {group.membersCount == 1 ? 'miembro' : 'miembros'}</span>
                                 </div>
                             </div>

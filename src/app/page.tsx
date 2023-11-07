@@ -7,6 +7,7 @@ import GroupsSectionLanding from './components/GroupsSectionLanding';
 import { SummaryStats } from './components/SummaryStats';
 
 import React from "react";
+import WorkshopsSectionLanding from './components/WorkshopsSectionLanding';
 
 
 export default function Home() {
@@ -92,6 +93,36 @@ export default function Home() {
 
         <GroupsSectionLanding />
       </div>
+
+
+
+      {/* Section: Eventos */}
+      <div className='flex flex-col w-full max-w-8xl my-12'>
+        <h3 className='flex items-center justify-between'>
+          <Link className='relative left-[-27.5px]' href='/event'>
+            <span className='w-[80px] h-[80px] gradient-section-landing flex justify-center items-center mr-3'>
+              <Image
+                className='inline-block'
+                src="/groups_icon.png"
+                alt="Groups icon"
+                width={25}
+                height={25}
+                priority
+              />
+            </span>
+            
+            <span className='text-2xl font-light text-neutral-100 uppercase'>Eventos</span>
+          </Link>
+
+          <Link href="/event" className='text-sm text-neutral-200'>
+            ver todos
+            <IconArrowRight size={20} />
+          </Link>
+        </h3>
+
+        <WorkshopsSectionLanding />
+      </div>
+      
 
 
       {/* Section: Labs */}

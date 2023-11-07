@@ -1,7 +1,7 @@
 'use client';
 
 import { fetchGroupById } from "@/app/services/group.service";
-import { UserDtoOld } from "@/app/shared/types.old";
+import { type UserDtoOld } from "@/app/shared/types.old";
 
 import { Avatar } from "@nextui-org/avatar";
 import { Link } from "@nextui-org/link";
